@@ -1,28 +1,32 @@
 ## 简介
 
 &emsp; &emsp; AJ-Report是全开源的一个BI平台，酷炫大屏展示，能随时随地掌控业务动态，让每个决策都有数据支撑。<br>
-&emsp; &emsp; 多数据源支持，内置mysql、elasticsearch、kudu驱动，支持自定义数据集省去数据接口开发，支持17+种大屏组件，不会开发，照着设计稿也可以制作大屏。<br>
+&emsp; &emsp; 多数据源支持，内置mysql、elasticsearch、kudu驱动，支持自定义数据集省去数据接口开发，目前已支持20种大屏组件/图表，不会开发，照着设计稿也可以制作大屏。<br>
 &emsp; &emsp; 三步轻松完成大屏设计：配置数据源---->写SQL配置数据集---->拖拽配置大屏---->保存发布。欢迎体验。
 
 ## 在线体验
 
-#### &emsp; 在线体验: [https://report.anji-plus.com/index.html](https://report.anji-plus.com/index.html "链接")  &emsp;体验账号：guest 密码：guest
+#### &emsp; [在线体验](https://report.anji-plus.com/index.html "链接"): https://report.anji-plus.com/index.html  &emsp;体验账号：guest 密码：guest
 
-#### &emsp; 在线文档: [https://report.anji-plus.com/report-doc/](https://report.anji-plus.com/report-doc/ "doc")<br>
+#### &emsp; [在线文档](https://report.anji-plus.com/report-doc/ "doc"): https://report.anji-plus.com/report-doc/ <br>
 
-#### &emsp; 在线提问: [https://gitee.com/anji-plus/report/issues](https://gitee.com/anji-plus/report/issues "issue")<br>
+#### &emsp; [在线提问](https://gitee.com/anji-plus/report/issues "issue"): https://gitee.com/anji-plus/report/issues <br>
 
 ## 发行版本
 
-#### &emsp; 下载链接：[https://gitee.com/anji-plus/report/releases](https://gitee.com/anji-plus/report/releases "下载链接")<br>
+#### &emsp; [下载链接](https://gitee.com/anji-plus/report/releases "下载链接"): https://gitee.com/anji-plus/report/releases <br>
 
 ## 功能概述
 
 #### &emsp; 组件介绍
 
 &emsp;&emsp; 大屏设计（AJ-Report）是一个可视化拖拽编辑的，直观，酷炫，具有科技感的图表工具全开源项目。 内置的基础功能包括数据源，数据集，报表管理，项目部分截图如下。<br>
-**在线案例还在努力创造中，敬请期待！！！**
+
 ![操作](https://images.gitee.com/uploads/images/2021/0703/094742_c0243f70_1728982.gif "2021-07-03_09-43-50.gif")
+
+![视频](https://report.anji-plus.com/report-doc/static/Rhea.mp4) <br>
+
+**[更多社区大屏案例](https://report.anji-plus.com/report-doc/guide/bigScreenCase.html)** <br>
 
 ## 数据流程图
 
@@ -37,7 +41,7 @@
 │   ├── start.sh
 │   └── stop.sh
 ├── conf                                       配置文件目录
-│   └── bootstrap-dev.yml
+│   └── bootstrap.yml
 ├── logs                                          启动日志目录
 ├── cache                                         本地缓存目录
 ├── lib                                           自定义扩展包&report-core核心包
@@ -63,8 +67,8 @@
 
 ### 依赖
 
-- [Mysql] 5.7+
-- [Jdk] 1.8+
+- [Mysql] 5.7
+- [Jdk] 1.8
 
 ### 后端
 
@@ -76,14 +80,14 @@
 ### 前端
 
 - [npm](https://www.npmjs.com/)：node.js的包管理工具，用于统一管理我们前端项目中需要用到的包、插件、工具、命令等，便于开发和维护。
-- [webpack](https://webpack.docschina.org/)：用于现代 JavaScript 应用程序的_静态模块打包工具
-- [ES6](https://es6.ruanyifeng.com/)：Javascript的新版本，ECMAScript6的简称。利用ES6我们可以简化我们的JS代码，同时利用其提供的强大功能来快速实现JS逻辑。
+- [webpack](https://webpack.docschina.org/)：用于现代 JavaScript 应用程序的静态模块打包工具。
+- [ES6](https://es6.ruanyifeng.com/)：JavaScript的新版本，ECMAScript6的简称。利用ES6我们可以简化我们的JS代码，同时利用其提供的强大功能来快速实现JS逻辑。
 - [vue-cli](https://cli.vuejs.org/)：Vue的脚手架工具，用于自动生成Vue项目的目录及文件。
 - [vue-router](https://router.vuejs.org/)： Vue提供的前端路由工具，利用其我们实现页面的路由控制，局部刷新及按需加载，构建单页应用，实现前后端分离。
 - [element-ui](https://element.eleme.cn/#/zh-CN)：基于MVVM框架Vue开源出来的一套前端ui组件。
-- [avue](https://www.avuejs.com/): 用该组件包裹后可以变成拖拽组件,采用相对于父类绝对定位;用键盘的上下左右也可以控制移动
-- [vue-echarts](https://www.npmjs.com/package/vue-echarts/): vue-echarts是封装后的vue插件,基于 ECharts v4.0.1+ 开发
-- [vue-superslide](https://www.npmjs.com/package/vue-super-slider/): Vue-SuperSlide(Github) 是 SuperSlide 的 Vue 封装版本
+- [avue](https://www.avuejs.com/): 用该组件包裹后可以变成拖拽组件，采用相对于父类绝对定位，用键盘的上下左右也可以控制移动。
+- [vue-echarts](https://www.npmjs.com/package/vue-echarts/): vue-echarts是封装后的vue插件，基于 ECharts v4.0.1+ 开发。
+- [vue-superslide](https://www.npmjs.com/package/vue-super-slider/): Vue-SuperSlide(Github) 是 SuperSlide 的 Vue 封装版本。
 - [vuedraggable](https://github.com/SortableJS/Vue.Draggable/): 是一款基于Sortable.js实现的vue拖拽插件。
 - [luckysheet](https://gitee.com/mengshukeji/Luckysheet): Luckysheet ，一款纯前端类似excel的在线表格，功能强大、配置简单、完全开源。
 
@@ -91,19 +95,19 @@
 
 在Linux上先准备好maven、node.js、jdk
 
-- [Apache Maven] 3.5 +<br>
-- [Node.js] v14.16.0+<br>
-- [Jdk] 1.8+
+- [Apache Maven] 3.5 <br>
+- [Node.js] v14.16.0 <br>
+- [Jdk] 1.8
 
 ```
 git clone https://gitee.com/anji-plus/report.git
 cd report
 sh build.sh
-编译完成放在build文件夹 report-core-xxxx.zip
+编译完成放在build文件夹 aj-report-xxxx.zip
 
-unzip report-core-xxxx.zip
-cd report-core-xxxx
-vim conf/bootstrap-dev.yml 数据库连接
+unzip aj-report-xxxx.zip
+cd aj-report-xxxx
+vim conf/bootstrap.yml 修改数据库连接等信息
 sh bin/start.sh Linux启动
 bin/start.bat Windows修改第4行的JAVA_HOME后(去掉rem注释)，双击启动
 
@@ -111,14 +115,19 @@ bin/start.bat Windows修改第4行的JAVA_HOME后(去掉rem注释)，双击启�
 http://serverip:9095
 ```
 
-源码编译部署参考文档：https://report.anji-plus.com/report-doc/guide/quicklySource.html <br>
-发行版部署参考文档：https://report.anji-plus.com/report-doc/guide/quicklyDistribution.html <br>
-前后端分类部署参考文档：https://report.anji-plus.com/report-doc/guide/quicklySeparate.html <br>
+**[运行环境参考文档](https://report.anji-plus.com/report-doc/guide/quicklyDevelop.html)** <br>
+
+**[源码编译部署参考文档](https://report.anji-plus.com/report-doc/guide/quicklySource.html)** <br>
+
+**[发行版部署参考文档](https://report.anji-plus.com/report-doc/guide/quicklyDistribution.html)** <br>
+
+**[前后端分离部署参考文档](https://report.anji-plus.com/report-doc/guide/quicklySeparate.html)** <br>
 
 ## 操作手册
 
 新建数据源（重置mysql数据源） --> 新建数据集（编写sql） --> 新建大屏（设计大屏） <br>
-请参考在线文档：https://report.anji-plus.com/report-doc/guide/datasource.html <br>
+
+**[在线文档](https://report.anji-plus.com/report-doc/guide/datasource.html)**
 
 ## SQL初始化
 
@@ -134,30 +143,34 @@ sql文件的目录在：report-core --> src --> main --> resources -- > db.migra
 <a href='http://www.anji-plus.com/'> <img src="https://report.anji-plus.com/file/download/d287d4d3-d30b-4850-9bac-a6c991409251" width = "130" height = "50" align=left/> </a>
 <a href='https://www.yunstech.cn/'><img src="https://www.yunstech.cn/images/logo.png" width = "130" height = "50" /> </a>
 <a href='http://www.fgkb.net/'><img src="https://report.anji-plus.com/file/download/9ee5b709-5033-4cd5-a784-ebd2877fd373" width = "130" height = "50" /> </a>
-<a href='https://www.gykjweb.com/'><img src="https://report.anji-plus.com/file/download/d13b03f5-0c20-4878-9a79-f3c76b44bfd9" width = "130" height = "130" /> </a>
+<a href='http://www.turingoal.com/'><img src="https://report.anji-plus.com/file/download/cda7bf68-376b-45dc-9a55-c52b21e4a8c8" width = "130" height = "50" /> </a>
+<a href='https://www.gykjweb.com/'><img src="https://report.anji-plus.com/file/download/d13b03f5-0c20-4878-9a79-f3c76b44bfd9" width = "130" height = "130" /> </a> <br>
+<a href='http://www.plian.net/'><img src="https://report.anji-plus.com/file/download/7838f2c2-fdce-4ca7-8373-14d13dcda5cc" width = "130" height = "50" /> </a>
+<a href='https://www.zjjcl.cn/'><img src="https://report.anji-plus.com/file/download/8df07663-60c9-4e32-a0f2-0ea7d5c46ff9" width = "130" height = "50" /> </a>
 
-## 近期计划
 
-- 完善地图插件
-- 完善表格插件
-- 丰富自定义框图、挂件
-- 丰富更多图表组件
-- 基础图表增加
-- 现有图表功能修复/增加
+## 未来计划
+
+- 大屏宽高动态可视化
+- nodeV16适配
+- 增加省市区地图等图
+- 增加基础边框样式
+- Execl报表功能增加与bug修复
+
+## 已知问题
+
+- IE白屏（兼容性问题）
 
 ## 版本问题
 
 已知以下版本存在兼容性问题
 
 - Node.js V16
+- openJdk
 - Jdk 11
 - Mysql 8.0（8.0.23/26版本没有问题，8.0.21版本存在问题）
-- Windows 11
 
-AJ-Report 使用Druid，版本为1.2.6，如果你觉得你配置都是正常但是数据源测试不过，请尝试修改pom文件降低Druid版本。 <br>
-例如：MSSQLSERVER 2014，请将Druid版本降低为1.2.1以下（需要修改源码）。 <br>
-
-常见问题：https://report.anji-plus.com/report-doc/guide/question.html <br>
+**[常见问题](https://report.anji-plus.com/report-doc/guide/question.html)**
 
 ## 商业授权
 
@@ -175,11 +188,8 @@ AJ-Report使用[Apache2.0开源协议](http://www.apache.org/licenses/LICENSE-2.
 ## 技术支持
 
 **如有问题，请提交 [Issue](https://gitee.com/anji-plus/report/issues) <br>**
-微信群：<br>
+个人企业微信：<br>
 <img src="https://images.gitee.com/uploads/images/2021/0729/130901_1672e6c5_7492051.jpeg" width = "200" height = "200" align=left/>
-|
 
 #### 开源不易，劳烦各位star ☺
-
-
 

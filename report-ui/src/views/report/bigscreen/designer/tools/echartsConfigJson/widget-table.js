@@ -51,6 +51,14 @@ export const widgetTable = {
           value: '5'
         },
         {
+          type: 'el-input-number',
+          label: '行高',
+          name: 'rowHeight',
+          required: false,
+          placeholder: '',
+          value: '50'
+        },
+        {
           type: 'el-switch',
           label: '开启滚动',
           name: 'isRoll',
@@ -59,17 +67,37 @@ export const widgetTable = {
           value: true
         },
         {
-          type: 'el-input-number',
-          label: '滚动时间(毫秒)',
-          name: 'rollTime',
+          type: 'el-select',
+          label: '动画效果',
+          name: 'effect',
           required: false,
           placeholder: '',
-          value: 1000
+          selectOptions: [
+            {code: 'top', name: '上滚动'},
+            {code: 'topLoop', name: '上循环滚动'},
+          ],
+          value: 'topLoop'
+        },
+        {
+          type: 'el-input-number',
+          label: '滚动间隔(毫秒)',
+          name: 'interTime',
+          required: false,
+          placeholder: '',
+          value: 2500
+        },
+        {
+          type: 'el-input-number',
+          label: '动效时间(毫秒)',
+          name: 'delayTime',
+          required: false,
+          placeholder: '',
+          value: 500
         },
         {
           type: 'el-input-number',
           label: '滚动个数',
-          name: 'rollNumber',
+          name: 'scroll',
           required: false,
           placeholder: '',
           value: 1
@@ -172,10 +200,10 @@ export const widgetTable = {
           name: 'dynamicAddTable',
           required: false,
           placeholder: '',
-          value: [{name: '日期', key: 'date', width: 200}, {name: '姓名', key: 'name', width: 200}, {
-            name: '地址',
-            key: 'address',
-            width: '200'
+          value: [
+            {name: '日期', key: 'date', width: '50%'},
+            {name: '姓名', key: 'name', width: '50%'},
+            {name: '地址', key: 'address', width: '200%',
           }]
         }
       ],
@@ -205,7 +233,7 @@ export const widgetTable = {
           name: 'refreshTime',
           relactiveDom: 'dataType',
           relactiveDomValue: 'dynamicData',
-          value: 5000
+          value: 30000
         },
         {
           type: 'el-button',
@@ -216,13 +244,13 @@ export const widgetTable = {
           relactiveDom: 'dataType',
           relactiveDomValue: 'staticData',
           value: [
-            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄'},
-            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄'},
-            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄'},
-            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄'},
-            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄'},
-            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄'},
-            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄'},
+            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄0001'},
+            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄0002'},
+            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄0003'},
+            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄0004'},
+            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄0005'},
+            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄0006'},
+            {date: '2016-05-02', name: '王小虎', address: '上海市普陀区金沙江路 1518 弄0007'},
           ],
         },
         {

@@ -5,7 +5,7 @@
       <div class="title">
         <div
           v-for="(item, index) in header"
-          :style="headerTableStlye"
+          :style="[headerTableStlye,tableFiledWidth(index),tableRowHeight()]"
           :key="index"
         >
           {{ item.name }}
@@ -14,11 +14,11 @@
       <!--数据-->
       <div class="bd">
         <ul class="infoList">
-          <li v-for="(item, index) in list" :key="index">
+          <li v-for="(item, index) in list" :key="index" :style="tableRowHeight()" >
             <div
               v-for="(itemChild, idx) in header"
               :key="idx"
-              :style="[bodyTableStyle, bodyTable(index)]"
+              :style="[bodyTableStyle, bodyTable(index),tableFiledWidth(idx),tableRowHeight()]"
             >
               {{ item[itemChild.key] }}
             </div>
@@ -48,7 +48,8 @@ export default {
         autoPage: true,
         //effect: "top",
         autoPlay: true,
-        vis: 5
+        vis: 5,
+        rowHeight:'50px'
       },
       header: [],
       list: [],
@@ -127,8 +128,10 @@ export default {
       const options = this.options;
       const rollSet = this.optionsSetUp;
       options.autoPlay = rollSet.isRoll;
-      options.delayTime = rollSet.rollTime;
-      options.scroll = rollSet.rollNumber;
+      options.effect = rollSet.effect;
+      options.interTime = rollSet.interTime;
+      options.delayTime = rollSet.delayTime;
+      options.scroll = rollSet.scroll;
       this.options = options;
       this.hackResetFun();
     },
@@ -140,12 +143,12 @@ export default {
       const tableData = this.optionsData;
       tableData.dataType == "staticData"
         ? this.handlerStaticData(tableData.staticData)
-        : this.handlerDymaicData(tableData.dynamicData, tableData.refreshTime);
+        : this.handlerDynamicData(tableData.dynamicData, tableData.refreshTime);
     },
     handlerStaticData(data) {
       this.list = data;
     },
-    handlerDymaicData(data, refreshTime) {
+    handlerDynamicData(data, refreshTime) {
       if (!data) return;
       if (this.ispreview) {
         this.getEchartData(data);
@@ -172,15 +175,31 @@ export default {
     },
     // 计算 奇偶背景色
     bodyTable(index) {
+      var styleJson = {};
       if (index % 2) {
-        return {
-          "background-color": this.optionsSetUp.eventColor
-        };
+        styleJson["background-color"] = this.optionsSetUp.eventColor
       } else {
-        return {
-          "background-color": this.optionsSetUp.oldColor
-        };
+        styleJson["background-color"] = this.optionsSetUp.oldColor
       }
+      return styleJson;
+    },
+    tableRowHeight(){
+      var styleJson = {};
+      if(this.optionsSetUp.rowHeight){
+        styleJson['height'] = this.optionsSetUp.rowHeight+'px';
+        styleJson['line-height'] = this.optionsSetUp.rowHeight+'px';
+      }else{
+        styleJson['height'] =this.options.rowHeight
+        styleJson['line-height'] = this.optionsSetUp.rowHeight+'px';
+      }
+      return styleJson;
+    },
+    tableFiledWidth(index){
+      var styleJson = {};
+      if(this.optionsSetUp.dynamicAddTable[index].width ){
+        styleJson["width"] = this.optionsSetUp.dynamicAddTable[index].width
+      }
+      return styleJson
     }
   }
 };

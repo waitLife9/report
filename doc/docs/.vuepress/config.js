@@ -15,6 +15,7 @@ module.exports = {
             {text: 'GitHub', link: 'https://github.com/anji-plus/report'},
             {text: 'Gitee', link: 'https://gitee.com/anji-plus/report'},
             {text: '谁在使用', link: '/guide/briefUsing'},
+            {text: '更多案例', link: '/guide/bigScreenCase'},
         ],
         sidebar: {
             '/guide/': [
@@ -25,6 +26,7 @@ module.exports = {
                         {title: '简介', path: '/guide/'},
                         {title: '谁在使用', path: '/guide/briefUsing'},
                         {title: '技术支持', path: '/guide/briefSupport'},
+                        {title: '更多案例', path: '/guide/bigScreenCase'},
                     ]
                 },
                 {
@@ -54,6 +56,7 @@ module.exports = {
                         {title: '大屏报表', path: '/guide/dashboard'},
                         {title: '表格报表', path: '/guide/execl'},
                         {title: '导入导出', path: '/guide/importexport'},
+                        {title: '图表组件', path: '/guide/charts'},
                     ]
                 },
                 {
@@ -71,7 +74,7 @@ module.exports = {
                         {title: '搭建AJ-Report开发环境', path: '/guide/community/AC1688/搭建aj-report开发环境'}
                     ]
                 }
-                ],
+            ],
         }
     },
     plugins: [
