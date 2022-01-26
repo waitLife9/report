@@ -16,6 +16,7 @@ import com.anjiplus.template.gaea.business.modules.dashboard.service.ReportDashb
 import com.anjiplus.template.gaea.business.modules.file.entity.GaeaFile;
 import com.anjiplus.template.gaea.business.modules.file.service.GaeaFileService;
 import com.anjiplus.template.gaea.business.modules.file.util.FileUtils;
+import com.anjiplus.template.gaea.business.modules.report.service.ReportService;
 import com.anjiplus.template.gaea.business.util.DateUtil;
 import com.anjiplus.template.gaea.business.modules.dashboardwidget.controller.dto.ReportDashboardWidgetDto;
 import com.anjiplus.template.gaea.business.modules.dashboardwidget.controller.dto.ReportDashboardWidgetValueDto;
@@ -26,6 +27,7 @@ import com.anjiplus.template.gaea.business.modules.dataset.controller.dto.DataSe
 import com.anjiplus.template.gaea.business.modules.dataset.controller.dto.OriginalDataDto;
 import com.anjiplus.template.gaea.business.modules.dataset.service.DataSetService;
 import com.anjiplus.template.gaea.business.util.FileUtil;
+import com.anjiplus.template.gaea.business.util.RequestUtil;
 import com.anjiplus.template.gaea.business.util.UuidUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -51,6 +53,7 @@ import java.io.File;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author Raod
@@ -73,6 +76,9 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
 
     @Autowired
     private GaeaFileService gaeaFileService;
+
+    @Autowired
+    private ReportService reportService;
 
     @Value("${customer.file.downloadPath:''}")
     private String fileDownloadPath;
@@ -159,7 +165,7 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
                 .lambda().eq(ReportDashboardWidget::getReportCode, reportCode));
         List<ReportDashboardWidgetDto> widgets = dto.getWidgets();
 
-        List<ReportDashboardWidget> reportDashboardWidgetList = new ArrayList<>();
+//        List<ReportDashboardWidget> reportDashboardWidgetList = new ArrayList<>();
         for (int i = 0; i < widgets.size(); i++) {
             ReportDashboardWidget reportDashboardWidget = new ReportDashboardWidget();
             ReportDashboardWidgetDto reportDashboardWidgetDto = widgets.get(i);
@@ -175,9 +181,13 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
             reportDashboardWidget.setEnableFlag(1);
             reportDashboardWidget.setDeleteFlag(0);
             reportDashboardWidget.setSort((long) (i + 1));
-            reportDashboardWidgetList.add(reportDashboardWidget);
+
+            //兼容底层，不采用批量插入
+            reportDashboardWidgetService.insert(reportDashboardWidget);
+
+//            reportDashboardWidgetList.add(reportDashboardWidget);
         }
-        reportDashboardWidgetService.insertBatch(reportDashboardWidgetList);
+//        reportDashboardWidgetService.insertBatch(reportDashboardWidgetList);
 
     }
 
@@ -268,6 +278,13 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
         FileUtil.delete(path);
         log.info("删除临时文件：{}，{}", zipPath, path);
 
+        //异步统计下载次数
+        CompletableFuture.runAsync(() -> {
+            log.info("=======>ip:{} 下载模板：{}", RequestUtil.getIpAddr(request), reportCode);
+            reportService.downloadStatistics(reportCode);
+        });
+
+
         return body;
     }
 
@@ -312,11 +329,15 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
                     LambdaQueryWrapper<GaeaFile> queryWrapper = Wrappers.lambdaQuery();
                     queryWrapper.eq(GaeaFile::getFileId, fileName);
                     GaeaFile gaeaFile = gaeaFileService.selectOne(queryWrapper);
+                    String uploadPath;
                     if (null == gaeaFile) {
                         GaeaFile upload = gaeaFileService.upload(imageFile, fileName);
                         log.info("存入图片: {}", upload.getFilePath());
-                        fileMap.put(fileName, upload.getUrlPath());
+                        uploadPath = upload.getUrlPath();
+                    }else {
+                        uploadPath = gaeaFile.getUrlPath();
                     }
+                    fileMap.put(fileName, uploadPath);
                 }
             }
 
@@ -446,14 +467,19 @@ public class ReportDashboardServiceImpl implements ReportDashboardService, Initi
             return data;
         }
         //获取时间轴字段和解析时间颗粒度
-        chartProperties.forEach((key, value) -> {
+
+        for (Map.Entry<String, String> entry : chartProperties.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
             dto.setParticles(value);
             setTimeLineFormat(dto);
             if (StringUtils.isNotBlank(dto.getDataTimeFormat())) {
                 dto.setTimeLineFiled(key);
-                return;
+                break;
             }
-        });
+
+        }
+
 
         if (StringUtils.isBlank(dto.getDataTimeFormat())) {
             return data;

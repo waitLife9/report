@@ -13,7 +13,7 @@ import lombok.Data;
 * @author Raod
 * @date 2021-03-18 12:11:31.150755900
 **/
-@TableName(value="gaea_report_data_set")
+@TableName(keepGlobalPrefix=true, value="gaea_report_data_set")
 @Data
 public class DataSet extends GaeaBaseEntity {
     @ApiModelProperty(value = "数据集编码")
@@ -25,6 +25,9 @@ public class DataSet extends GaeaBaseEntity {
 
     @ApiModelProperty(value = "数据集描述")
     private String setDesc;
+
+    @ApiModelProperty(value = "数据集类型")
+    private String setType;
 
     @ApiModelProperty(value = "数据源编码")
     private String sourceCode;
