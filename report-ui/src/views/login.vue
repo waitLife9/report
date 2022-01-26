@@ -1,6 +1,6 @@
 <!--
  * @Descripttion: 登录
- * @version: 
+ * @version:
  * @Author: qianlishi
  * @Date: 2021-12-11 14:48:27
  * @LastEditors: qianlishi
@@ -129,8 +129,8 @@ export default {
       activeTop: "-50%",
       rememberPsw: false,
       loginForm: {
-        loginName: "",
-        password: "",
+        loginName: "guest",
+        password: "guest",
         verifyCode: ""
       },
       loginRules: {
