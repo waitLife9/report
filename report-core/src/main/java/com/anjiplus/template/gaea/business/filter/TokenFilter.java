@@ -125,6 +125,29 @@ public class TokenFilter implements Filter {
         }
         String gaeaUserJsonStr = cacheHelper.stringGet(userKey);
 
+        //在线体验版本
+        if (USER_GUEST.equals(loginName)
+                && !uri.endsWith("/dataSet/testTransform")
+                && !uri.endsWith("/reportDashboard/getData")
+                && !uri.startsWith("/dict")
+                && !uri.endsWith("/reportExcel/preview")
+        ) {
+            //不允许删除
+            String method = request.getMethod();
+            if (HttpMethod.POST.name().equalsIgnoreCase(method)
+                    || HttpMethod.PUT.name().equalsIgnoreCase(method)
+                    || HttpMethod.DELETE.name().equalsIgnoreCase(method)
+            ) {
+                ResponseBean responseBean = ResponseBean.builder().code("50001")
+                        .message("在线体验版本，不允许此操作。请自行下载本地运行").build();
+                response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
+                response.getWriter().print(JSONObject.toJSONString(responseBean));
+                return;
+            }
+        }
+
+
+
         //判断接口权限
         //请求路径
         String requestUrl = request.getRequestURI();
