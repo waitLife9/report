@@ -130,7 +130,7 @@ export default {
         pageNumber: 1,
         pageSize: 8,
         order: "DESC",
-        sort: "update_time"
+        sort: "create_time"
       },
       // 分享
       visibleForShareDialog: false,

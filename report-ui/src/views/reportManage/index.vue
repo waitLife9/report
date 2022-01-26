@@ -97,7 +97,7 @@ export default {
           query: {
             api: reportList,
             permission: "reportManage:query",
-            sort: "update_time",
+            sort: "create_time",
             order: "DESC"
           },
           queryByPrimarykey: {

@@ -45,7 +45,7 @@ public class ReportServiceImpl implements ReportService {
         if (null != report) {
             Long downloadCount = report.getDownloadCount();
             if (null == downloadCount) {
-                downloadCount = 0L;
+                downloadCount = 1L;
             }else {
                 downloadCount++;
             }
