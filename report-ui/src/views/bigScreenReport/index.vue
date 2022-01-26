@@ -84,6 +84,10 @@
             </footer>
           </div>
         </div>
+        <div style="text-align: center;font-size: 12px;color: #ccc; height: 20px;display: flex;justify-content: space-between;padding: 0 20px">
+          <span>制作人：{{ item.reportAuthor || '官方' }}</span>
+          <span>下载次数：{{ item.downloadCount || 0 }}</span>
+        </div>
       </el-col>
     </el-row>
     <div class="block">
@@ -121,6 +125,7 @@ export default {
       params: {
         reportCode: "",
         reportName: "",
+        reportAuthor: "",
         reportType: "report_screen",
         pageNumber: 1,
         pageSize: 8,
@@ -147,6 +152,7 @@ export default {
     reset(formName) {
       this.$refs[formName].resetFields();
       this.params.reportName = "";
+      this.params.reportAuthor = "";
       this.params.reportCode = "";
       this.params.pageNumber = 1;
       this.queryByPage();
@@ -214,8 +220,8 @@ export default {
     height: 200px;
     position: relative;
     overflow: hidden;
-    margin: 10px 0;
-    border: 12px solid white;
+    margin: 5px 0;
+    border: 4px solid white;
   }
 
   .bg .bg-img {
