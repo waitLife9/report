@@ -13,6 +13,9 @@ public interface BusinessConstant {
     String RIGHT_MIDDLE_BOAST = "]";
     String SLASH = "/";
 
+    String USER_GUEST = "guest";
+    String USER_ADMIN = "admin";
+
     /**
      * 字典项重复
      */

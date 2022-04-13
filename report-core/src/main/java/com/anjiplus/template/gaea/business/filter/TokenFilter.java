@@ -35,8 +35,8 @@ import static com.anji.plus.gaea.constant.GaeaConstant.URL_REPLACEMENT;
 @Order(Integer.MIN_VALUE + 99)
 public class TokenFilter implements Filter {
     private static final Pattern PATTERN = Pattern.compile(".*().*");
-    private static final String USER_GUEST = "guest";
-    @Value("${server.servlet.context-path:'/'}")
+
+    @Value("${server.servlet.context-path:/}")
     private String SLASH = "/";
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
@@ -120,11 +120,14 @@ public class TokenFilter implements Filter {
         cacheHelper.stringSetExpire(userKey, gaeaUserJsonStr, 3600);
 
         // 判断用户是否有该url的权限
-        AtomicBoolean authorizeFlag = authorize(request, gaeaUserJsonStr);
-        if (!authorizeFlag.get()) {
-            error(response);//无权限
-            return;
+        if (!BusinessConstant.USER_ADMIN.equals(loginName)) {
+            AtomicBoolean authorizeFlag = authorize(request, gaeaUserJsonStr);
+            if (!authorizeFlag.get()) {
+                error(response);//无权限
+                return;
+            }
         }
+
 
         //执行
         filterChain.doFilter(request, response);
@@ -164,6 +167,7 @@ public class TokenFilter implements Filter {
      * @return
      */
     private AtomicBoolean authorize(HttpServletRequest request, String gaeaUserJsonStr){
+
         //判断接口权限
         //请求路径
         String requestUrl = request.getRequestURI();
