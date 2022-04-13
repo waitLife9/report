@@ -101,6 +101,7 @@ public class ReportDashboardController {
 
     @PostMapping("/share")
     @GaeaAuditLog(pageTitle = "分享")
+    @Permission(code = "share", name = "分享大屏")
     public ResponseBean share(@Validated @RequestBody ReportShareDto dto) {
         return ResponseBean.builder().data(reportShareService.insertShare(dto)).build();
     }

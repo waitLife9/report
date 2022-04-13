@@ -137,6 +137,7 @@ public class DataSetController extends GaeaBaseController<DataSetParam, DataSet,
      * @return
      */
     @GetMapping("/queryAllDataSet")
+    @Permission( code = "query", name = "明细" )
     public ResponseBean queryAllDataSet() {
         return responseSuccessWithData(dataSetService.queryAllDataSet());
     }

@@ -1,7 +1,5 @@
 package com.anjiplus.template.gaea.business.config;
 
-import com.anji.plus.gaea.cache.CacheHelper;
-import com.anjiplus.template.gaea.business.cache.ReportCacheHelper;
 import com.anjiplus.template.gaea.business.runner.ApplicationInitRunner;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.cache.ehcache.EhCacheCache;
@@ -28,11 +26,6 @@ public class BusinessAutoConfiguration {
     @Bean
     public ApplicationInitRunner applicationInitRunner() {
         return new ApplicationInitRunner();
-    }
-
-    @Bean
-    public CacheHelper gaeaCacheHelper(){
-        return new ReportCacheHelper();
     }
 
     @Bean

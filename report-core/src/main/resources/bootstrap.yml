@@ -46,6 +46,17 @@ spring:
     placeholder-replacement: false
     init-sqls:
       - CREATE DATABASE IF NOT EXISTS `aj_report` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+  redis:
+    host: 10.108.2.26
+    port: 6379
+    password: Allways123
+    database: 12
+    timeout: 10000
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
 
 mybatis-plus:
   configuration:

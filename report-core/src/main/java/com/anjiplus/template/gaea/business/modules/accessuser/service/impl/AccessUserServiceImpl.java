@@ -163,7 +163,7 @@ public class AccessUserServiceImpl implements AccessUserService {
         } else {
             // 生成用户token
             String uuid = GaeaUtils.UUID();
-            token = jwtBean.createToken(loginName, uuid);
+            token = jwtBean.createToken(loginName, uuid,0,"-1");
             cacheHelper.stringSetExpire(tokenKey, token, 3600);
         }
 
