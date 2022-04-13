@@ -1,7 +1,6 @@
 
 package com.anjiplus.template.gaea.business.modules.datasetparam.controller;
 
-import com.anji.plus.gaea.annotation.Permission;
 import com.anji.plus.gaea.bean.ResponseBean;
 import com.anji.plus.gaea.curd.controller.GaeaBaseController;
 import com.anji.plus.gaea.curd.service.GaeaBaseService;
@@ -53,7 +52,6 @@ public class DataSetParamController extends GaeaBaseController<DataSetParamParam
      * @return
      */
     @PostMapping("/verification")
-    @Permission( code = "query", name = "测试查询参数是否正确",superCode = "resultsetManage")
     public ResponseBean verification(@Validated @RequestBody DataSetParamValidationParam param) {
         DataSetParamDto dto = new DataSetParamDto();
         dto.setSampleItem(param.getSampleItem());

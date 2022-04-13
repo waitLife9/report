@@ -122,8 +122,8 @@ public class TokenFilter implements Filter {
         // 判断用户是否有该url的权限
         AtomicBoolean authorizeFlag = authorize(request, gaeaUserJsonStr);
         if (!authorizeFlag.get()) {
-//            error(response);//无权限
-//            return;
+            error(response);//无权限
+            return;
         }
 
         //执行

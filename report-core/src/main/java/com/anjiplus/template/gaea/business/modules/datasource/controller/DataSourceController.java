@@ -49,7 +49,6 @@ public class DataSourceController extends GaeaBaseController<DataSourceParam, Da
      * 获取所有数据源
      * @return
      */
-    @Permission( code = "query", name = "获取所有数据源")
     @GetMapping("/queryAllDataSource")
     public ResponseBean queryAllDataSource() {
         return responseSuccessWithData(dataSourceService.queryAllDataSource());
