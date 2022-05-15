@@ -6,9 +6,9 @@
 
 ## 在线体验
 
-#### &emsp; [在线体验](https://report.anji-plus.com/index.html "链接"): https://report.anji-plus.com/index.html  &emsp;体验账号：guest 密码：guest
+#### &emsp; [在线体验](https://ajreport.beliefteam.cn/index.html "链接"): https://ajreport.beliefteam.cn/index.html  &emsp;体验账号：guest 密码：guest
 
-#### &emsp; [在线文档](https://report.anji-plus.com/report-doc/ "doc"): https://report.anji-plus.com/report-doc/ <br>
+#### &emsp; [在线文档](https://ajreport.beliefteam.cn/report-doc/ "doc"): https://ajreport.beliefteam.cn/report-doc/ <br>
 
 #### &emsp; [在线提问](https://gitee.com/anji-plus/report/issues "issue"): https://gitee.com/anji-plus/report/issues <br>
 
@@ -23,10 +23,8 @@
 &emsp;&emsp; 大屏设计（AJ-Report）是一个可视化拖拽编辑的，直观，酷炫，具有科技感的图表工具全开源项目。 内置的基础功能包括数据源，数据集，报表管理，项目部分截图如下。<br>
 
 ![操作](https://images.gitee.com/uploads/images/2021/0703/094742_c0243f70_1728982.gif "2021-07-03_09-43-50.gif")
-
-![视频](https://report.anji-plus.com/report-doc/static/Rhea.mp4) <br>
-
-**[更多社区大屏案例](https://report.anji-plus.com/report-doc/guide/bigScreenCase.html)** <br>
+![视频](https://ajreport.beliefteam.cn/report-doc/static/Rhea.mp4) <br>
+**[更多社区大屏案例](https://ajreport.beliefteam.cn/report-doc/guide/bigScreenCase.html)** <br>
 
 ## 数据流程图
 
@@ -91,7 +89,28 @@
 - [vuedraggable](https://github.com/SortableJS/Vue.Draggable/): 是一款基于Sortable.js实现的vue拖拽插件。
 - [luckysheet](https://gitee.com/mengshukeji/Luckysheet): Luckysheet ，一款纯前端类似excel的在线表格，功能强大、配置简单、完全开源。
 
-## 编译打包
+## 部署方式
+
+**注意版本兼容性** <br>
+源码 doc -> docs -> guide 目录下即所有文档 <br>
+
+### 发行版部署
+
+```
+下载最新发行版，解压
+cd aj-report-xxxx
+vim conf/bootstrap.yml 修改数据库连接等信息
+sh bin/start.sh Linux启动
+bin/start.bat Windows修改第4行的JAVA_HOME后(去掉rem注释)，双击启动
+
+启动后访问
+http://serverip:9095
+用户名密码：admin/123456
+
+登陆后修改"数据源->mysql数据源"用户名密码
+```
+
+### 源码编译部署
 
 在Linux上先准备好maven、node.js、jdk
 
@@ -113,21 +132,23 @@ bin/start.bat Windows修改第4行的JAVA_HOME后(去掉rem注释)，双击启�
 
 启动后访问
 http://serverip:9095
+用户名密码：admin/123456
+
+登陆后修改"数据源->mysql数据源"用户名密码
 ```
 
-**[运行环境参考文档](https://report.anji-plus.com/report-doc/guide/quicklyDevelop.html)** <br>
+**[运行环境参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklyDevelop.html)** <br>
 
-**[源码编译部署参考文档](https://report.anji-plus.com/report-doc/guide/quicklySource.html)** <br>
+**[源码编译部署参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklySource.html)** <br>
 
-**[发行版部署参考文档](https://report.anji-plus.com/report-doc/guide/quicklyDistribution.html)** <br>
+**[发行版部署参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklyDistribution.html)** <br>
 
-**[前后端分离部署参考文档](https://report.anji-plus.com/report-doc/guide/quicklySeparate.html)** <br>
+**[前后端分离部署参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklySeparate.html)** <br>
 
 ## 操作手册
 
 新建数据源（重置mysql数据源） --> 新建数据集（编写sql） --> 新建大屏（设计大屏） <br>
-
-**[在线文档](https://report.anji-plus.com/report-doc/guide/datasource.html)**
+**[在线文档](https://ajreport.beliefteam.cn/report-doc/guide/datasource.html)**
 
 ## SQL初始化
 
@@ -140,14 +161,13 @@ sql文件的目录在：report-core --> src --> main --> resources -- > db.migra
 
 希望你们的logo出现在此，[请点此Issue进行登记](https://gitee.com/anji-plus/report/issues/I3ZXT4) ，我们将优先进行技术支持 <br>
 
-<a href='http://www.anji-plus.com/'> <img src="https://report.anji-plus.com/file/download/d287d4d3-d30b-4850-9bac-a6c991409251" width = "130" height = "50" align=left/> </a>
+<a href='http://www.anji-plus.com/'> <img src="https://ajreport.beliefteam.cn/file/download/d287d4d3-d30b-4850-9bac-a6c991409251" width = "130" height = "50" align=left/> </a>
 <a href='https://www.yunstech.cn/'><img src="https://www.yunstech.cn/images/logo.png" width = "130" height = "50" /> </a>
-<a href='http://www.fgkb.net/'><img src="https://report.anji-plus.com/file/download/9ee5b709-5033-4cd5-a784-ebd2877fd373" width = "130" height = "50" /> </a>
-<a href='http://www.turingoal.com/'><img src="https://report.anji-plus.com/file/download/cda7bf68-376b-45dc-9a55-c52b21e4a8c8" width = "130" height = "50" /> </a>
-<a href='https://www.gykjweb.com/'><img src="https://report.anji-plus.com/file/download/d13b03f5-0c20-4878-9a79-f3c76b44bfd9" width = "130" height = "130" /> </a> <br>
-<a href='http://www.plian.net/'><img src="https://report.anji-plus.com/file/download/7838f2c2-fdce-4ca7-8373-14d13dcda5cc" width = "130" height = "50" /> </a>
-<a href='https://www.zjjcl.cn/'><img src="https://report.anji-plus.com/file/download/8df07663-60c9-4e32-a0f2-0ea7d5c46ff9" width = "130" height = "50" /> </a>
-
+<a href='http://www.fgkb.net/'><img src="https://ajreport.beliefteam.cn/file/download/9ee5b709-5033-4cd5-a784-ebd2877fd373" width = "130" height = "50" /> </a>
+<a href='http://www.turingoal.com/'><img src="https://ajreport.beliefteam.cn/file/download/cda7bf68-376b-45dc-9a55-c52b21e4a8c8" width = "130" height = "50" /> </a>
+<a href='https://www.gykjweb.com/'><img src="https://ajreport.beliefteam.cn/file/download/d13b03f5-0c20-4878-9a79-f3c76b44bfd9" width = "130" height = "130" /> </a> <br>
+<a href='http://www.plian.net/'><img src="https://ajreport.beliefteam.cn/file/download/7838f2c2-fdce-4ca7-8373-14d13dcda5cc" width = "130" height = "50" /> </a>
+<a href='https://www.zjjcl.cn/'><img src="https://ajreport.beliefteam.cn/file/download/8df07663-60c9-4e32-a0f2-0ea7d5c46ff9" width = "130" height = "50" /> </a>
 
 ## 未来计划
 
@@ -170,7 +190,7 @@ sql文件的目录在：report-core --> src --> main --> resources -- > db.migra
 - Jdk 11
 - Mysql 8.0（8.0.23/26版本没有问题，8.0.21版本存在问题）
 
-**[常见问题](https://report.anji-plus.com/report-doc/guide/question.html)**
+**[常见问题](https://ajreport.beliefteam.cn/report-doc/guide/question.html)**
 
 ## 商业授权
 
@@ -183,12 +203,13 @@ AJ-Report使用[Apache2.0开源协议](http://www.apache.org/licenses/LICENSE-2.
 - 在二次开发后商业发布的产品中，使用了多个开源软件，则必须包含一个Notice文件，在Notice文件中需要带有AJ-Report LICENSE。你可以在Notice中增加自己的许可，但不可以表现为对AJ-Report
   LICENSE构成更改。
 
-如果您需要商业化增值服务，请加下面的微信沟通。
+如果您需要商业化增值服务，请加下面的微信沟通，并直接说明来意。
 
 ## 技术支持
 
 **如有问题，请提交 [Issue](https://gitee.com/anji-plus/report/issues) <br>**
-个人企业微信：<br>
+个人企业微信：加微信进群备注 AJ-Report 或者 Report <br>
+如果不是为了进群，请直接说明来意，每天加群的都很多，企微也是我们自己的工作企微，会有很多消息会被刷下去，如果半天没有回复你，请发送多次 <br>
 <img src="https://images.gitee.com/uploads/images/2021/0729/130901_1672e6c5_7492051.jpeg" width = "200" height = "200" align=left/>
 
 #### 开源不易，劳烦各位star ☺
