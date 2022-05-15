@@ -1,10 +1,10 @@
 /*
  * @Descripttion: 主文件
- * @version: 
+ * @version:
  * @Author: qianlishi
  * @Date: 2021-08-29 06:43:07
  * @LastEditors: qianlishi
- * @LastEditTime: 2021-12-13 10:22:37
+ * @LastEditTime: 2022-03-11 10:35:35
  */
 import { widgetTool } from "./main"
 const screenConfig = {
@@ -59,7 +59,7 @@ const screenConfig = {
         name: 'backgroundImage',
         required: false,
         placeholder: '',
-        value: 'https://report.anji-plus.com/file/download/bf566e48-ccad-40e1-8ee9-228427e5466b',
+        value: 'https://ajreport.beliefteam.cn/file/download/bf566e48-ccad-40e1-8ee9-228427e5466b',
       },
     ],
     data: [],
@@ -81,5 +81,5 @@ const getToolByCode = function (code) {
   })
   return item
 }
-
+console.log(widgetTools)
 export {widgetTools, getToolByCode}
