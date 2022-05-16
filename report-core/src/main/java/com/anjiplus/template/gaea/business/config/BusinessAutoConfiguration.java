@@ -27,18 +27,4 @@ public class BusinessAutoConfiguration {
     public ApplicationInitRunner applicationInitRunner() {
         return new ApplicationInitRunner();
     }
-
-    @Bean
-    public EhCacheCache ehCacheCache() {
-        return (EhCacheCache) ehCacheCacheManager().getCache("reportCache");
-    }
-
-    /**
-     * 创建ehCacheCacheManager
-     */
-    @Bean
-    public EhCacheCacheManager ehCacheCacheManager() {
-
-        return new EhCacheCacheManager();
-    }
 }
