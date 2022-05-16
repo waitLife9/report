@@ -24,6 +24,25 @@ import widgetTable from "./texts/widgetTable.vue";
 import widgetText from "./texts/widgetText.vue";
 import widgetTime from "./texts/widgetTime.vue";
 import widgetVideo from "./texts/widgetVideo.vue";
+import widgetBarchart from "./barCharts/widgetBarchart.vue";
+import widgetGradientColorBarchart from "./barCharts/widgetGradientColorBarchart.vue";
+import widgetLinechart from "./lineCharts/widgetLinechart.vue";
+import widgetBarlinechart from "./barlineCharts/widgetBarlinechart";
+import WidgetPiechart from "./pieCharts/widgetPiechart.vue";
+import WidgetFunnel from "./funnelCharts/widgetFunnel.vue";
+import WidgetGauge from "./percentCharts/widgetGauge.vue";
+import WidgetPieNightingaleRoseArea from "./pieCharts/widgetPieNightingaleRose";
+import widgetMap from "./mapCharts/widgetMap.vue";
+import widgetPiePercentageChart from "./percentCharts/widgetPiePercentageChart";
+import widgetAirBubbleMap from "./mapCharts/widgetAirBubbleMap";
+import widgetBarStackChart from "./barCharts/widgetBarStackChart";
+import widgetLineStackChart from "./lineCharts/widgetLineStackChart";
+import widgetBarCompareChart from "./barCharts/widgetBarCompareChart";
+import widgetLineCompareChart from "./lineCharts/widgetLineCompareChart";
+import widgetDecoratePieChart from "./decorateCharts/widgetDecoratePieChart";
+import widgetMoreBarLineChart from "./barlineCharts/widgetMoreBarLineChart";
+import widgetWordCloud from "./wordcloudCharts/widgetWordCloud";
+import widgetHeatmap from "./heatmap/widgetHeatmap";
 
 export default {
   name: "Widget",
@@ -36,7 +55,26 @@ export default {
     widgetTable,
     widgetText,
     widgetTime,
-    widgetVideo
+    widgetVideo,
+    widgetBarchart,
+    widgetGradientColorBarchart,
+    widgetLinechart,
+    widgetBarlinechart,
+    WidgetPiechart,
+    WidgetFunnel,
+    WidgetGauge,
+    WidgetPieNightingaleRoseArea,
+    widgetMap,
+    widgetPiePercentageChart,
+    widgetAirBubbleMap,
+    widgetBarStackChart,
+    widgetLineStackChart,
+    widgetBarCompareChart,
+    widgetLineCompareChart,
+    widgetDecoratePieChart,
+    widgetMoreBarLineChart,
+    widgetWordCloud,
+    widgetHeatmap
   },
   model: {
     prop: "value",
