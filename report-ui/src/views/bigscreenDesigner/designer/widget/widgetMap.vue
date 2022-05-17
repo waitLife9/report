@@ -228,8 +228,6 @@ export default {
     return {
       options: {
         title: {
-          text: "模拟迁徙",
-          subtext: "数据纯属虚构",
           left: "center",
           textStyle: {
             color: "#fff"
@@ -343,15 +341,21 @@ export default {
     value: {
       handler(val) {
         this.optionsStyle = val.position;
+        this.optionsData = val.data;
+        this.optionsSetup = val.setup;
+        this.editorOptions();
       },
       deep: true
     }
   },
   created() {
     this.optionsStyle = this.value.position;
+    this.optionsData = this.value.data;
+    this.optionsSetup = this.value.setup;
   },
   mounted() {
     this.initData();
+    this.editorOptions();
   },
   methods: {
     initData() {
@@ -451,8 +455,35 @@ export default {
         }
       }
       return res;
-    }
+    },
+    editorOptions() {
+      this.setOptionsTitle();
+    },
+    // 标题设置
+    setOptionsTitle() {
+      const optionsSetup = this.optionsSetup;
+      const title = {};
+      title.show = optionsSetup.isNoTitle;
+      title.text = optionsSetup.titleText;
+      title.left = optionsSetup.textAlign;
+      title.textStyle = {
+        color: optionsSetup.textColor,
+        fontSize: optionsSetup.textFontSize,
+        fontWeight: optionsSetup.textFontWeight
+      };
+      title.subtext = optionsSetup.subText;
+      title.subtextStyle = {
+        color: optionsSetup.subTextColor,
+        fontWeight: optionsSetup.subTextFontWeight,
+        fontSize: optionsSetup.subTextFontSize
+      };
+      this.options.title = title;
+    },
   }
+
+
+
+
 };
 </script>
 <style lang="scss" scoped>
