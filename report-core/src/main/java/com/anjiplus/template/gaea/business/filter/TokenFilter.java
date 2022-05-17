@@ -86,7 +86,12 @@ public class TokenFilter implements Filter {
             return;
         }
 
+
         if (SLASH.equals(uri) || SLASH.concat(BusinessConstant.SLASH).equals(uri)) {
+            if (BusinessConstant.SLASH.equals(uri)) {
+                response.sendRedirect("/index.html");
+                return;
+            }
             response.sendRedirect(SLASH + "/index.html");
             return;
         }
