@@ -55,7 +55,7 @@ public class ReportController extends GaeaBaseController<ReportParam, Report, Re
     @GetMapping({"/sharePageList"})
     @Permission(code = "query", name = "查询")
     @GaeaAuditLog(pageTitle = "大屏携带token查询", isSaveResponseData = false)
-    public ResponseBean sharePageList(ReportParam param) {
+    public ResponseBean sharePageList(@RequestBody ReportParam param) {
         Page<ReportDto> pageDto = reportService.sharePageList(param);
         return this.responseSuccessWithData(pageDto);
     }
