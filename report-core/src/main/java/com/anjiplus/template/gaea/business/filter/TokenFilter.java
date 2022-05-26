@@ -7,7 +7,9 @@ import com.anji.plus.gaea.constant.GaeaConstant;
 import com.anji.plus.gaea.utils.JwtBean;
 import com.anjiplus.template.gaea.business.constant.BusinessConstant;
 import com.anjiplus.template.gaea.business.modules.accessuser.controller.dto.GaeaUserDto;
+import com.anjiplus.template.gaea.business.util.JwtUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.annotation.Order;
@@ -100,6 +102,24 @@ public class TokenFilter implements Filter {
             return;
         }
 
+        //针对大屏分享，优先处理
+        String shareToken = request.getHeader("Share-Token");
+        if (StringUtils.isNotBlank(shareToken)) {
+            //两个接口需要处理
+            //  /reportDashboard/getData
+            //  /reportDashboard/{reportCode}
+            String reportCode = JwtUtil.getReportCode(shareToken);
+            if (!uri.endsWith("/getData") && !uri.contains(reportCode)) {
+                ResponseBean responseBean = ResponseBean.builder().code("50014")
+                        .message("分享链接已过期").build();
+                response.getWriter().print(JSONObject.toJSONString(responseBean));
+                return;
+            }
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
         //获取token
         String token = request.getHeader("Authorization");
         if (StringUtils.isBlank(token)) {
@@ -115,23 +135,21 @@ public class TokenFilter implements Filter {
             error(response);
             return;
         }
-        if (!cacheHelper.exist(userKey)) {
-            error(response);
-            return;
-        }
+
         String gaeaUserJsonStr = cacheHelper.stringGet(userKey);
-        // 延长有效期
-        cacheHelper.stringSetExpire(tokenKey, token, 3600);
-        cacheHelper.stringSetExpire(userKey, gaeaUserJsonStr, 3600);
 
         // 判断用户是否有该url的权限
         if (!BusinessConstant.USER_ADMIN.equals(loginName)) {
             AtomicBoolean authorizeFlag = authorize(request, gaeaUserJsonStr);
             if (!authorizeFlag.get()) {
-                error(response);//无权限
+                authError(response);//无权限
                 return;
             }
         }
+
+        // 延长有效期
+        cacheHelper.stringSetExpire(tokenKey, token, 3600);
+        cacheHelper.stringSetExpire(userKey, gaeaUserJsonStr, 3600);
 
 
         //执行
@@ -214,7 +232,13 @@ public class TokenFilter implements Filter {
 
     private void error(HttpServletResponse response) throws IOException {
         ResponseBean responseBean = ResponseBean.builder().code("50008").message("The Token has expired").build();
-        response.setContentType("application/json");
+        response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
+        response.getWriter().print(JSONObject.toJSONString(responseBean));
+    }
+
+    private void authError(HttpServletResponse response) throws IOException {
+        ResponseBean responseBean = ResponseBean.builder().code("User.no.authority").message("no auth").build();
+        response.setContentType(ContentType.APPLICATION_JSON.getMimeType());
         response.getWriter().print(JSONObject.toJSONString(responseBean));
     }
 }

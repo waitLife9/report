@@ -24,4 +24,11 @@ public interface ReportShareService extends GaeaBaseService<ReportShareParam, Re
     ReportShareDto insertShare(ReportShareDto dto);
 
     ReportShare detailByCode(String shareCode);
+
+    /**
+     * 获取一个永久的分享url，如果不存在，则新增一条
+     * @param reportCode
+     * @return
+     */
+    String getShareForeverUrl(String reportCode);
 }
