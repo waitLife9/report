@@ -36,6 +36,7 @@ export default {
             label: "报表编码",
             field: "reportCode"
           },
+<<<<<<< HEAD
           {
             inputType: "anji-select",
             anjiSelectOption: {
@@ -44,6 +45,8 @@ export default {
             label: "分享类型",
             field: "shareValidType"
           },
+=======
+>>>>>>> db091f0 (需求----新增报表分享菜单)
         ],
         // 表头按钮
         tableButtons: [
@@ -91,9 +94,13 @@ export default {
         buttons: {
           query: {
             api: reportShareList,
+<<<<<<< HEAD
             permission: 'ReportShare:query',
             sort: "create_time",
             order: "DESC"
+=======
+            permission: 'ReportShare:query'
+>>>>>>> db091f0 (需求----新增报表分享菜单)
           },
           queryByPrimarykey: {
             api: reportShareDetail,
@@ -137,7 +144,11 @@ export default {
             disabled: false,
           },
           {
+<<<<<<< HEAD
             label: '分享类型',//分享有效期类型，DIC_NAME=SHARE_VAILD
+=======
+            label: '分享有效期类型',//分享有效期类型，DIC_NAME=SHARE_VAILD
+>>>>>>> db091f0 (需求----新增报表分享菜单)
             placeholder: '',
             field: 'shareValidType',
             fieldTableRowRenderer: row => {
@@ -150,7 +161,11 @@ export default {
             disabled: false,
           },
           {
+<<<<<<< HEAD
             label: '分享过期时间',//分享有效期
+=======
+            label: '分享有效期',//分享有效期
+>>>>>>> db091f0 (需求----新增报表分享菜单)
             placeholder: '',
             field: 'shareValidTime',
             editField: 'shareValidTime',
@@ -164,7 +179,10 @@ export default {
             placeholder: '',
             field: 'shareToken',
             editField: 'shareToken',
+<<<<<<< HEAD
             tableHide: true,
+=======
+>>>>>>> db091f0 (需求----新增报表分享菜单)
             inputType: 'input',
             rules: [
               { min: 1, max: 255, message: '不超过255个字符', trigger: 'blur' }
@@ -182,6 +200,7 @@ export default {
             ],
             disabled: false,
           },
+<<<<<<< HEAD
           {
             label: '分享码',
             placeholder: '',
@@ -192,6 +211,8 @@ export default {
             ],
             disabled: false,
           },
+=======
+>>>>>>> db091f0 (需求----新增报表分享菜单)
         ],
         // 弹出框表单对应的值有改动时
         // formData 整个表单，通过编辑打开弹出框，根据主键查询数据时，fieldName, fieldVal, fieldExtend为空
