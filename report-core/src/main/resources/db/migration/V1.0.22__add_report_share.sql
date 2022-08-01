@@ -6,8 +6,5 @@ INSERT INTO `aj_report`.`access_role_authority`(`role_code`, `target`, `action`)
 INSERT INTO `aj_report`.`access_role_authority`(`role_code`, `target`, `action`) VALUES ('root', 'reportShareManage', 'detail');
 INSERT INTO `aj_report`.`access_role_authority`(`role_code`, `target`, `action`) VALUES ('root', 'reportShareManage', 'shareDelay');
 INSERT INTO `aj_report`.`access_role_authority`(`role_code`, `target`, `action`) VALUES ('root', 'reportShareManage', 'delete');
-<<<<<<< HEAD
 
 ALTER TABLE `aj_report`.`gaea_report_share` ADD COLUMN share_password varchar(10) DEFAULT NULL COMMENT '分享码' AFTER share_url;
-=======
->>>>>>> db091f0 (需求----新增报表分享菜单)
