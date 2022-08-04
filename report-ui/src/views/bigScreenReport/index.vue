@@ -105,6 +105,7 @@
       :visib="visibleForShareDialog"
       :reportCode="reportCodeForShareDialog"
       :reportName="reportNameForShareDialog"
+      :reportType="reportTypeForShareDialog"
       @handleClose="visibleForShareDialog = false"
     />
   </div>
@@ -135,7 +136,8 @@ export default {
       // 分享
       visibleForShareDialog: false,
       reportCodeForShareDialog: "",
-      reportNameForShareDialog: ""
+      reportNameForShareDialog: "",
+      reportTypeForShareDialog: "",
     };
   },
   mounted() {},
@@ -182,10 +184,12 @@ export default {
     share(val) {
       this.reportCodeForShareDialog = val.reportCode;
       this.reportNameForShareDialog = val.reportName;
+      this.reportTypeForShareDialog = val.reportType;
       this.visibleForShareDialog = true;
     },
     openDesign(val) {
       let routeUrl = this.$router.resolve({
+        //path: "/screenDesigner",
         path: "/bigscreen/designer",
         query: {
           reportCode: val.reportCode
