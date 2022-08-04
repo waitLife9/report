@@ -1,7 +1,7 @@
 ## 简介
 
 &emsp; &emsp; AJ-Report是全开源的一个BI平台，酷炫大屏展示，能随时随地掌控业务动态，让每个决策都有数据支撑。<br>
-&emsp; &emsp; 多数据源支持，内置mysql、elasticsearch、kudu驱动，支持自定义数据集省去数据接口开发，目前已支持20种大屏组件/图表，不会开发，照着设计稿也可以制作大屏。<br>
+&emsp; &emsp; 多数据源支持，内置mysql、elasticsearch、kudu驱动，支持自定义数据集省去数据接口开发，目前已支持25种大屏组件/图表，不会开发，照着设计稿也可以制作大屏。<br>
 &emsp; &emsp; 三步轻松完成大屏设计：配置数据源---->写SQL配置数据集---->拖拽配置大屏---->保存发布。欢迎体验。
 
 ## 在线体验
@@ -91,10 +91,12 @@
 
 ## 部署方式
 
+**[运行环境参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklyDevelop.html)** <br>
 **注意版本兼容性** <br>
 源码 doc -> docs -> guide 目录下即所有文档 <br>
 
 ### 发行版部署
+**[发行版部署参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklyDistribution.html)** <br>
 
 ```
 下载最新发行版，解压
@@ -111,6 +113,7 @@ http://serverip:9095
 ```
 
 ### 源码编译部署
+**[源码编译部署参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklySource.html)** <br>
 
 在Linux上先准备好maven、node.js、jdk
 
@@ -136,12 +139,6 @@ http://serverip:9095
 
 登陆后修改"数据源->mysql数据源"用户名密码
 ```
-
-**[运行环境参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklyDevelop.html)** <br>
-
-**[源码编译部署参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklySource.html)** <br>
-
-**[发行版部署参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklyDistribution.html)** <br>
 
 **[前后端分离部署参考文档](https://ajreport.beliefteam.cn/report-doc/guide/quicklySeparate.html)** <br>
 
@@ -169,7 +166,9 @@ sql文件的目录在：report-core --> src --> main --> resources -- > db.migra
 <a href='http://www.plian.net/'><img src="https://ajreport.beliefteam.cn/file/download/7838f2c2-fdce-4ca7-8373-14d13dcda5cc" width = "130" height = "50" /> </a>
 <a href='https://www.zjjcl.cn/'><img src="https://ajreport.beliefteam.cn/file/download/8df07663-60c9-4e32-a0f2-0ea7d5c46ff9" width = "130" height = "50" /> </a>
 <a href='http://www.jiuyinkj.com/'><img src="https://ajreport.beliefteam.cn/file/download/5889f0e6-ba08-4990-ac89-eabfbb8af8bd" width = "130" height = "50" /> </a>
-<a href='http://www.yourongyun.cn/'><img src="https://ajreport.beliefteam.cn/file/download/90e15ed9-5594-4c14-b318-72aeb6816fb9" width = "130" height = "50" /> </a>
+<a href='http://www.yourongyun.cn/'><img src="https://ajreport.beliefteam.cn/file/download/90e15ed9-5594-4c14-b318-72aeb6816fb9" width = "130" height = "50" /> </a> </br>
+<a href='https://www.wenkai.net/'><img src="https://ajreport.beliefteam.cn/file/download/ec788c55-bffd-4809-ae3c-0ce2cbd1a9d0" width = "130" height = "50" /> </a>
+<a href='http://www.sungcor.com/'><img src="https://ajreport.beliefteam.cn/file/download/0514a4a6-787b-4e25-be94-03ff94309553" width = "130" height = "50" /> </a>
 
 ## 未来计划
 
@@ -177,7 +176,7 @@ sql文件的目录在：report-core --> src --> main --> resources -- > db.migra
 - nodeV16适配
 - 增加省市区地图等图
 - 增加基础边框样式
-- Execl报表功能增加与bug修复
+- Excel报表功能增加与bug修复
 
 ## 已知问题
 
@@ -211,11 +210,9 @@ AJ-Report使用[Apache2.0开源协议](http://www.apache.org/licenses/LICENSE-2.
 
 **如有问题，请提交 [Issue](https://gitee.com/anji-plus/report/issues) <br>**
 个人企业微信：加微信进群备注 AJ-Report 或者 Report <br>
-如果不是为了进群，请直接说明来意，每天加群的都很多，企微也是我们自己的工作企微，会有很多消息会被刷下去，如果半天没有回复你，请发送多次 <br>
+如果不是为了进群，请直接说明来意，每天加群的都很多，企微也是我们自己的工作企微，会有很多消息会被刷下去，如果半天没有回复你，请发送多次。如果加了之后一言不发，不好意思，我直接忽略，我也不知道你要干嘛。 <br>
 <img src="https://images.gitee.com/uploads/images/2021/0729/130901_1672e6c5_7492051.jpeg" width = "200" height = "200" align=left/>
 
-AJ-Report技术交流三群，新群可直接加<br>
-<img src="https://images.gitee.com/uploads/images/2021/1101/130421_caa25124_7492051.jpeg" width = "200" height = "200" align=left/> <br>
 
 #### 开源不易，劳烦各位star ☺
 
