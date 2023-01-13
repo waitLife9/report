@@ -13,7 +13,7 @@
 
     <groupId>com.anji-plus.otwb</groupId>
 	<artifactId>product-report-starter</artifactId>
-    <version>1.5.0.RELEASE</version>
+    <version>1.6.0.RELEASE</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
