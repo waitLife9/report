@@ -15,7 +15,7 @@ cat $BuildDir/build/pom.xml > $BuildDir/report-core/pom.xml
 echo "build web"
 cd $BuildDir/report-ui
 rm -rf dist
-npm install >/dev/null 2>&1
+npm install
 npm run build:prod
 
 echo "publish web to springboot src/main/resources/static"
@@ -28,7 +28,7 @@ mv $BuildDir/report-ui/dist/* $BuildDir/report-core/src/main/resources/static/
 echo "build springboot"
 cd $BuildDir/report-core
 
-mvn clean deploy -DskipTests 
+mvn clean deploy -DskipTests
 
 rm -rf $BuildDir/report-core/src/main/resources/static
 git reset --hard
