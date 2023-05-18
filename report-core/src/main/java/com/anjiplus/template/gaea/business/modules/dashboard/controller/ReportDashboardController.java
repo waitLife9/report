@@ -92,6 +92,7 @@ public class ReportDashboardController {
         if (cacheHelper.exist(key)) {
             throw BusinessExceptionBuilder.build("当前下载人数过多，请稍后重试...");
         }
+        cacheHelper.stringSetExpire(key, "0", 300);
         try {
             return reportDashboardService.exportDashboard(request, response, reportCode, showDataSet);
         } finally {
