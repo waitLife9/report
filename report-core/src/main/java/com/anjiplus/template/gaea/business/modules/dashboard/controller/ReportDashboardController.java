@@ -4,6 +4,8 @@ package com.anjiplus.template.gaea.business.modules.dashboard.controller;
 import com.anji.plus.gaea.annotation.Permission;
 import com.anji.plus.gaea.annotation.log.GaeaAuditLog;
 import com.anji.plus.gaea.bean.ResponseBean;
+import com.anji.plus.gaea.cache.CacheHelper;
+import com.anji.plus.gaea.exception.BusinessExceptionBuilder;
 import com.anjiplus.template.gaea.business.modules.dashboard.service.ReportDashboardService;
 import com.anjiplus.template.gaea.business.modules.dashboard.controller.dto.ChartDto;
 import com.anjiplus.template.gaea.business.modules.dashboard.controller.dto.ReportDashboardObjectDto;
@@ -74,6 +76,8 @@ public class ReportDashboardController {
     }
 
 
+    @Autowired
+    private CacheHelper cacheHelper;
     /**
      * 导出大屏
      * @param reportCode
@@ -83,7 +87,16 @@ public class ReportDashboardController {
     @Permission(code = "export", name = "导出大屏")
     public ResponseEntity<byte[]> exportDashboard(HttpServletRequest request, HttpServletResponse response,
                                                   @RequestParam("reportCode") String reportCode, @RequestParam(value = "showDataSet",required = false, defaultValue = "1") Integer showDataSet) {
-        return reportDashboardService.exportDashboard(request, response, reportCode, showDataSet);
+        //简单限制一下线上下载
+        String key = "gaea:report:export:limit:" + reportCode;
+        if (cacheHelper.exist(key)) {
+            throw BusinessExceptionBuilder.build("当前下载人数过多，请稍后重试...");
+        }
+        try {
+            return reportDashboardService.exportDashboard(request, response, reportCode, showDataSet);
+        } finally {
+            cacheHelper.delete(key);
+        }
     }
 
     /**
