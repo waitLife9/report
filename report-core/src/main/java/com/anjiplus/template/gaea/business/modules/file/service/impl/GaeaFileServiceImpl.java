@@ -35,6 +35,7 @@ import java.util.UUID;
 
 /**
  * 文件管理服务实现
+ *
  * @author: Raod
  * @since: 2022-08-31
  */
@@ -65,7 +66,7 @@ public class GaeaFileServiceImpl implements GaeaFileService {
      */
     @Override
     public GaeaFile upload(MultipartFile multipartFile) {
-        String originalFilename =  multipartFile.getOriginalFilename();
+        String originalFilename = multipartFile.getOriginalFilename();
 
         if (StringUtils.isBlank(originalFilename)) {
             throw BusinessExceptionBuilder.build(ResponseCode.FILE_EMPTY_FILENAME);
@@ -81,12 +82,12 @@ public class GaeaFileServiceImpl implements GaeaFileService {
         String urlPath = fileDownloadPath + "/" + fileId;
 
         // 上传文件
-        try{
+        try {
             gaeaOSSTemplate.uploadFileByInputStream(multipartFile, fileObjectName);
-        }catch (GaeaOSSTypeLimitedException e){
+        } catch (GaeaOSSTypeLimitedException e) {
             log.error("上传失败GaeaOSSTypeLimitedException", e);
             throw BusinessExceptionBuilder.build(ResponseCode.FILE_SUFFIX_UNSUPPORTED, e.getMessage());
-        }catch (GaeaOSSException e){
+        } catch (GaeaOSSException e) {
             log.error("上传失败GaeaOSSException", e);
             throw BusinessExceptionBuilder.build(ResponseCode.FILE_UPLOAD_ERROR, e.getMessage());
         }
@@ -103,13 +104,13 @@ public class GaeaFileServiceImpl implements GaeaFileService {
         return gaeaFile;
     }
 
-    private MultipartFile getMultipartFile(File file){
+    private MultipartFile getMultipartFile(File file) {
         FileInputStream fileInputStream;
         MultipartFile multipartFile;
         try {
             fileInputStream = new FileInputStream(file);
-            multipartFile = new MockMultipartFile(file.getName(),file.getName(),
-                    ContentType.APPLICATION_OCTET_STREAM.toString(),fileInputStream);
+            multipartFile = new MockMultipartFile(file.getName(), file.getName(),
+                    ContentType.APPLICATION_OCTET_STREAM.toString(), fileInputStream);
         } catch (Exception e) {
             log.error("file转MultipartFile失败", e);
             throw BusinessExceptionBuilder.build(ResponseCode.FILE_OPERATION_FAILED, e.getMessage());
@@ -120,7 +121,7 @@ public class GaeaFileServiceImpl implements GaeaFileService {
     /**
      * 文件上传
      *
-     * @param file           文件
+     * @param file 文件
      * @return
      */
     @Override
@@ -130,38 +131,37 @@ public class GaeaFileServiceImpl implements GaeaFileService {
 
     @Override
     public ResponseEntity<byte[]> download(HttpServletRequest request, HttpServletResponse response, String fileId) {
+        // fileId必填
+        if (StringUtils.isBlank(fileId)) {
+            throw BusinessExceptionBuilder.build(ResponseCode.FILE_ONT_EXSIT);
+        }
+        // 根据fileId，从gaea_file中读出filePath
+        LambdaQueryWrapper<GaeaFile> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(GaeaFile::getFileId, fileId);
+        GaeaFile gaeaFile = gaeaFileMapper.selectOne(queryWrapper);
+        if (null == gaeaFile) {
+            throw BusinessExceptionBuilder.build(ResponseCode.FILE_ONT_EXSIT);
+        }
+
+        String userAgent = request.getHeader("User-Agent");
+        boolean isIEBrowser = userAgent.indexOf("MSIE") > 0;
+        // 在oss中存储的文件名 402b6193e70e40a9bf5b73a78ea1e8ab.png
+        String fileObjectName = gaeaFile.getFileId().concat(".").concat(gaeaFile.getFileType());
+        String originalFilename = gaeaFile.getFileInstruction();
+        if (StringUtils.isBlank(fileObjectName) || StringUtils.isBlank(originalFilename)) {
+            throw BusinessExceptionBuilder.build(ResponseCode.FILE_ONT_EXSIT);
+        }
+        if (!originalFilename.endsWith(".".concat(gaeaFile.getFileType()))) {
+            originalFilename = originalFilename.concat(".").concat(gaeaFile.getFileType());
+        }
         try {
-            // fileId必填
-            if(StringUtils.isBlank(fileId)){
-                throw BusinessExceptionBuilder.build(ResponseCode.FILE_ONT_EXSIT);
-            }
-            // 根据fileId，从gaea_file中读出filePath
-            LambdaQueryWrapper<GaeaFile> queryWrapper = Wrappers.lambdaQuery();
-            queryWrapper.eq(GaeaFile::getFileId, fileId);
-            GaeaFile gaeaFile = gaeaFileMapper.selectOne(queryWrapper);
-            if (null == gaeaFile) {
-                throw BusinessExceptionBuilder.build(ResponseCode.FILE_ONT_EXSIT);
-            }
-
-            String userAgent = request.getHeader("User-Agent");
-            boolean isIEBrowser = userAgent.indexOf("MSIE") > 0;
-            // 在oss中存储的文件名 402b6193e70e40a9bf5b73a78ea1e8ab.png
-            String fileObjectName = gaeaFile.getFileId().concat(".").concat(gaeaFile.getFileType());
-            String originalFilename = gaeaFile.getFileInstruction();
-            if (StringUtils.isBlank(fileObjectName) || StringUtils.isBlank(originalFilename)) {
-                throw BusinessExceptionBuilder.build(ResponseCode.FILE_ONT_EXSIT);
-            }
-            if (!originalFilename.endsWith(".".concat(gaeaFile.getFileType()))) {
-                originalFilename = originalFilename.concat(".").concat(gaeaFile.getFileType());
-            }
-
             // 调用文件存储工厂，读取文件，返回字节数组
             byte[] fileBytes = gaeaOSSTemplate.downloadFile(fileObjectName);
 
             // 根据文件后缀来判断，是显示图片\视频\音频，还是下载文件
             return ResponseUtil.writeBody(originalFilename, fileBytes, isIEBrowser);
         } catch (Exception e) {
-            log.error("file download error", e);
+            log.error("file download error :{} ", fileId, e);
             throw BusinessExceptionBuilder.build(ResponseCode.FILE_OPERATION_FAILED, e.getMessage());
         }
     }
@@ -175,7 +175,7 @@ public class GaeaFileServiceImpl implements GaeaFileService {
     @Override
     public byte[] getFile(String fileId) {
         // fileId必填
-        if(StringUtils.isBlank(fileId)){
+        if (StringUtils.isBlank(fileId)) {
             throw BusinessExceptionBuilder.build(ResponseCode.FILE_ONT_EXSIT);
         }
         // 根据fileId，从gaea_file中读出filePath
