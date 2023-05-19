@@ -5,21 +5,23 @@ import com.anji.plus.gaea.annotation.Permission;
 import com.anji.plus.gaea.annotation.log.GaeaAuditLog;
 import com.anji.plus.gaea.bean.ResponseBean;
 import com.anji.plus.gaea.cache.CacheHelper;
-import com.anji.plus.gaea.exception.BusinessExceptionBuilder;
-import com.anjiplus.template.gaea.business.modules.dashboard.service.ReportDashboardService;
 import com.anjiplus.template.gaea.business.modules.dashboard.controller.dto.ChartDto;
 import com.anjiplus.template.gaea.business.modules.dashboard.controller.dto.ReportDashboardObjectDto;
+import com.anjiplus.template.gaea.business.modules.dashboard.service.ReportDashboardService;
+import com.anjiplus.template.gaea.business.modules.report.service.ReportService;
 import com.anjiplus.template.gaea.business.modules.reportshare.controller.dto.ReportShareDto;
 import com.anjiplus.template.gaea.business.modules.reportshare.service.ReportShareService;
+import com.anjiplus.template.gaea.business.util.RequestUtil;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.concurrent.CompletableFuture;
 
 /**
 * @desc 大屏设计 controller
@@ -31,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
 @Api(tags = "大屏设计管理")
 @Permission(code = "bigScreenManage", name = "大屏报表")
 @RequestMapping("/reportDashboard")
+@Slf4j
 public class ReportDashboardController {
 
     @Autowired
@@ -78,6 +81,10 @@ public class ReportDashboardController {
 
     @Autowired
     private CacheHelper cacheHelper;
+
+    @Autowired
+    private ReportService reportService;
+
     /**
      * 导出大屏
      * @param reportCode
@@ -85,19 +92,24 @@ public class ReportDashboardController {
      */
     @GetMapping("/export")
     @Permission(code = "export", name = "导出大屏")
-    public ResponseEntity<byte[]> exportDashboard(HttpServletRequest request, HttpServletResponse response,
+    public void exportDashboard(HttpServletRequest request, HttpServletResponse response,
                                                   @RequestParam("reportCode") String reportCode, @RequestParam(value = "showDataSet",required = false, defaultValue = "1") Integer showDataSet) {
-        //简单限制一下线上下载
-        String key = "gaea:report:export:limit:" + reportCode;
-        if (cacheHelper.exist(key)) {
-            throw BusinessExceptionBuilder.build("当前下载人数过多，请稍后重试...");
-        }
-        cacheHelper.stringSetExpire(key, "0", 300);
-        try {
-            return reportDashboardService.exportDashboard(request, response, reportCode, showDataSet);
-        } finally {
-            cacheHelper.delete(key);
-        }
+//        //简单限制一下线上下载
+//        String key = "gaea:report:export:limit:" + reportCode;
+//        if (cacheHelper.exist(key)) {
+//            throw BusinessExceptionBuilder.build("当前下载人数过多，请稍后重试...");
+//        }
+//        cacheHelper.stringSetExpire(key, "0", 300);
+//        try {
+//            return reportDashboardService.exportDashboard(request, response, reportCode, showDataSet);
+//        } finally {
+//            cacheHelper.delete(key);
+//        }
+        //异步统计下载次数
+        CompletableFuture.runAsync(() -> {
+            log.info("=======>ip:{} 下载模板：{}", RequestUtil.getIpAddr(request), reportCode);
+            reportService.downloadStatistics(reportCode);
+        });
     }
 
     /**

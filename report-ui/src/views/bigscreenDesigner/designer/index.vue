@@ -203,7 +203,8 @@
                     content="适合当前系统"
                     placement="right"
                   >
-                    <div @click="exportDashboard(1)">导出(包含数据集)</div>
+<!--                    <div @click="exportDashboard(0)">导出(包含数据集)</div>-->
+                    <div @click="jumpDownload">导出(不包含数据集)</div>
                   </el-tooltip>
                 </li>
                 <li>
@@ -213,7 +214,8 @@
                     content="适合跨系统"
                     placement="right"
                   >
-                    <div @click="exportDashboard(0)">导出(不包含数据集)</div>
+<!--                    <div @click="exportDashboard(0)">导出(不包含数据集)</div>-->
+                    <div @click="jumpDownload">导出(不包含数据集)</div>
                   </el-tooltip>
                 </li>
               </ul>
