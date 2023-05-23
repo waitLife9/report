@@ -92,7 +92,7 @@ public class ReportDashboardController {
      */
     @GetMapping("/export")
     @Permission(code = "export", name = "导出大屏")
-    public void exportDashboard(HttpServletRequest request, HttpServletResponse response,
+    public ResponseBean exportDashboard(HttpServletRequest request, HttpServletResponse response,
                                                   @RequestParam("reportCode") String reportCode, @RequestParam(value = "showDataSet",required = false, defaultValue = "1") Integer showDataSet) {
 //        //简单限制一下线上下载
 //        String key = "gaea:report:export:limit:" + reportCode;
@@ -110,6 +110,7 @@ public class ReportDashboardController {
             log.info("=======>ip:{} 下载模板：{}", RequestUtil.getIpAddr(request), reportCode);
             reportService.downloadStatistics(reportCode);
         });
+        return ResponseBean.builder().build();
     }
 
     /**

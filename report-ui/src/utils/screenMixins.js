@@ -199,7 +199,13 @@ const mixin = {
       window.open(routeUrl.href, "_blank");
     },
     async jumpDownload(){
-      window.open('https://ajreport.beliefteam.cn/download/','_blank')
+      const param = {
+        reportCode: this.reportCode,
+        //showDataSet: val,
+      };
+      exportDashboard(param).then((res) =>{
+        window.open('https://ajreport.beliefteam.cn/download/','_blank')
+      });
     },
     async exportDashboard(val) {
       const fileName = this.reportCode + ".zip";

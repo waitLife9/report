@@ -55,7 +55,7 @@ export function exportDashboard(data) {
       url: process.env.BASE_API + '/reportDashboard/export',
       headers: { 'Authorization': getToken() },
       params:data,
-      responseType:'blob'
+      //responseType:'blob'
     }).then(res =>{
       resolve(res.data);
     }).catch(err =>{
