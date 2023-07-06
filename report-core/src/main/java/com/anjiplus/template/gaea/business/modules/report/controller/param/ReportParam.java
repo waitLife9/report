@@ -32,5 +32,9 @@ public class ReportParam extends PageParam implements Serializable{
     @Query(QueryEnum.EQ)
     private String reportType;
 
+    /** 0--已禁用 1--已启用  DIC_NAME=ENABLE_FLAG */
+    @Query(QueryEnum.EQ)
+    private Integer enableFlag;
+
 
 }
