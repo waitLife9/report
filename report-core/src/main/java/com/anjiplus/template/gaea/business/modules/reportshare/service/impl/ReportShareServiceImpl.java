@@ -77,13 +77,13 @@ public class ReportShareServiceImpl implements ReportShareService {
         //为空代表需要新增
         // 此时并不知道前端url是多少，只能从数据库任意获取一条作为url前缀,需保证数据库至少一条数据
         wrapper.clear();
-        wrapper.eq(ReportShare::getEnableFlag, EnableFlagEnum.ENABLE.getCodeValue());
+        String shareUrl = list(wrapper).get(0).getShareUrl();
         ReportShareDto dto = new ReportShareDto();
-        dto.setShareUrl(list(wrapper).get(0).getShareUrl());
+        dto.setShareUrl(shareUrl);
         dto.setReportCode(reportCode);
-        dto.setSharePassword("");
-        dto.setShareValidType(0);
-        return insertShare(dto).getShareUrl();
+        dto.setReportType(REPORT);
+        ReportShareDto reportShareDto = insertShare(dto);
+        return reportShareDto.getShareUrl();
     }
 
 
