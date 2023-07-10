@@ -82,6 +82,7 @@ public class ReportShareServiceImpl implements ReportShareService {
         dto.setShareUrl(shareUrl);
         dto.setReportCode(reportCode);
         dto.setReportType(REPORT);
+        dto.setShareValidType(0);
         ReportShareDto reportShareDto = insertShare(dto);
         return reportShareDto.getShareUrl();
     }
