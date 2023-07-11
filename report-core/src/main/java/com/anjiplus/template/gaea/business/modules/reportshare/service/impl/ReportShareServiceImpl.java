@@ -76,8 +76,9 @@ public class ReportShareServiceImpl implements ReportShareService {
         }
         //为空代表需要新增
         // 此时并不知道前端url是多少，只能从数据库任意获取一条作为url前缀,需保证数据库至少一条数据
-        wrapper.clear();
-        String shareUrl = list(wrapper).get(0).getShareUrl();
+        LambdaQueryWrapper<ReportShare> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.last(" limit 1");
+        String shareUrl = selectOne(queryWrapper).getShareUrl();
         ReportShareDto dto = new ReportShareDto();
         dto.setShareUrl(shareUrl);
         dto.setReportCode(reportCode);
