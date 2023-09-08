@@ -48,6 +48,7 @@ import widgetScaleHorizontal from "./scale/widgetScaleHorizontal.vue";
 import widgetBarDoubleYaxisChart from "./bar/widgetBarDoubleYaxisChart.vue";
 import widgetBorder from "./styleWidget/widgetBorder.vue";
 import widgetDecoration from "./styleWidget/widgetDecoration.vue";
+import widgetBarMap from "./map/widgetBarMap.vue";
 
 export default {
   name: "WidgetTemp",
@@ -90,6 +91,7 @@ export default {
     //widgetInput,
     widgetFormTime,
     widgetBarDoubleYaxisChart,
+    widgetBarMap
   },
   model: {
     prop: "value",

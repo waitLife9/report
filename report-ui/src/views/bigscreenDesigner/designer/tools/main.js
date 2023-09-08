@@ -46,6 +46,7 @@ import { widgetScaleHorizontal } from "./configure/scaleCharts/widget-scale-hori
 import {widgetBarDoubleYaxis} from "./configure/barCharts/widget-bar-double-yaxis-chart";
 import {widgetBorder} from "./configure/styleWidget/widget-border";
 import {widgetDecoration} from "./configure/styleWidget/widget-decoration";
+import {widgetBarMap} from "./configure/mapCharts/widget-bar-map";
 
 export const widgetTool = [
   // type=html类型的组件
@@ -88,4 +89,5 @@ export const widgetTool = [
   // widgetInput,
   widgetFormTime,
   widgetBarDoubleYaxis,
+  widgetBarMap
 ]
