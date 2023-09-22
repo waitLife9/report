@@ -15,7 +15,7 @@ cat $BuildDir/build/pom.xml > $BuildDir/report-core/pom.xml
 echo "build web"
 cd $BuildDir/report-ui
 rm -rf dist
-#npm install
+npm install
 npm run build:prod
 
 echo "publish web to springboot src/main/resources/static"
