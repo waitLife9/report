@@ -4,11 +4,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.anjiplus.template.gaea.business.ReportApplication;
 import com.anjiplus.template.gaea.business.modules.datasource.controller.dto.DataSourceDto;
 import com.anjiplus.template.gaea.business.modules.datasource.service.DataSourceService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
@@ -17,7 +15,6 @@ import java.util.List;
  * Created by raodeming on 2021/7/19.
  */
 @SpringBootTest(classes = ReportApplication.class)
-@RunWith(SpringRunner.class)
 public class DataSourceServiceImplTest {
 
     @Autowired
