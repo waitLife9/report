@@ -1,6 +1,6 @@
 <template>
   <div :style="styleObj">
-    <v-chart ref="myVChart"  :options="options" autoresize />
+    <v-chart ref="myVChart"  :option="options" autoresize />
   </div>
 </template>
 
@@ -9,7 +9,7 @@ import {
   originWidgetLinkageLogic,
   targetWidgetLinkageLogic,
 } from "@/views/bigscreenDesigner/designer/linkageLogic";
-import echarts from "echarts";
+import * as echarts from "echarts";
 export default {
   name: "WidgetGradientColorBarchart", //渐变色，参考https://www.makeapie.com/editor.html?c=x0oZWoncE
   components: {},

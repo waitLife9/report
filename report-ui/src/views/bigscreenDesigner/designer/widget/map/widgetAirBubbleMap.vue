@@ -1,12 +1,12 @@
 <template>
   <div :style="styleObj">
-    <v-chart ref="myVChart" :options="options" autoresize />
+    <v-chart ref="myVChart" :option="options" autoresize />
   </div>
 </template>
 <script>
 import {targetWidgetLinkageLogic} from "@/views/bigscreenDesigner/designer/linkageLogic";
 
-import echarts from "echarts";
+import * as echarts from "echarts";
 import "../../../../../../node_modules/echarts/map/js/china.js";
 //https://www.makeapie.com/editor.html?c=x2yaz6dfRw
 //https://www.makeapie.com/editor.html?c=xMpGBbTEKU

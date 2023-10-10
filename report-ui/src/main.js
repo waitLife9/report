@@ -14,7 +14,7 @@ import router from './router'
 import store from './store'
 import * as filter from './filter'
 import mixins from '@/mixins'
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 // 全局定义echarts
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/bar'

@@ -8,7 +8,7 @@ import {targetWidgetLinkageLogic} from "@/views/bigscreenDesigner/designer/linka
 
 import "../../../../../../node_modules/echarts/map/js/china.js";
 import {conversionProvince} from "@/utils/china";
-import echarts from "echarts";
+import * as echarts from "echarts";
 
 let geoCoordMap = conversionProvince;
 
