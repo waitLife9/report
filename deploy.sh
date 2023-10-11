@@ -24,11 +24,14 @@ rm -rf $BuildDir/report-core/src/main/resources/static
 mkdir -p $BuildDir/report-core/src/main/resources/static
 mv $BuildDir/report-ui/dist/* $BuildDir/report-core/src/main/resources/static/
 
-
 echo "build springboot"
 cd $BuildDir/report-core
 
 mvn clean deploy -DskipTests
 
-rm -rf $BuildDir/report-core/src/main/resources/static
-git reset --hard
+if [ $? -eq 0 ] ;then
+  rm -rf $BuildDir/report-core/src/main/resources/static
+  git reset --hard
+else
+  echo "deploy-failed,reset failed"
+fi

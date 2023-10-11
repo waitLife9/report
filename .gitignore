@@ -8,3 +8,4 @@ dist
 logs
 cache
 build
+./report-core/src/main/resources/static
