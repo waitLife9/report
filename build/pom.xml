@@ -3,10 +3,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.5.RELEASE</version>
-        <relativePath/>
+        <groupId>com.anji-plus</groupId>
+        <artifactId>spring-boot-gaea-parent</artifactId>
+        <version>2.9.1-SNAPSHOT</version>
     </parent>
 
     <name>aj-report</name>
@@ -22,9 +21,30 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.test.skip>true</maven.test.skip>
+        <gaea.version>2.9.1-SNAPSHOT</gaea.version>
+        <gaea.oss.version>2.9.1-SNAPSHOT</gaea.oss.version>
     </properties>
 
     <dependencies>
+        <!--<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+        </dependency>
+        -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.7</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,12 +88,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-context</artifactId>
-            <version>2.2.6.RELEASE</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
@@ -82,13 +96,11 @@
         <dependency>
             <groupId>com.anji-plus</groupId>
             <artifactId>spring-boot-gaea</artifactId>
-            <version>2.0.5.RELEASE</version>
         </dependency>
 
         <dependency>
             <groupId>com.anji-plus</groupId>
             <artifactId>spring-boot-starter-gaea-oss</artifactId>
-            <version>2.0.5.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -111,7 +123,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.10</version>
+            <version>4.5.13</version>
         </dependency>
 
         <dependency>
@@ -154,12 +166,50 @@
             <version>3.0.9</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>core-renderer</artifactId>
+            <version>R8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.itextpdf.tool</groupId>
+            <artifactId>xmlworker</artifactId>
+            <version>5.5.13</version>
+        </dependency>
+
     </dependencies>
 
+    <developers>
+        <developer>
+            <name>develop.anji-plus.com</name>
+            <email>MS@anji-plus.com</email>
+            <url>https://github.com/anji-plus</url>
+        </developer>
+    </developers>
 
-    <!-- 上传到公司私服， mvn clean deploy -Dmaven.test.skip=true -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
+            <!--<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    &lt;!&ndash;includeSystemScope>true</includeSystemScope&ndash;&gt;
+                    <classifier>exec</classifier>
+                </configuration>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -204,11 +254,11 @@
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>
-            <url>http://10.108.10.53:8081/repository/maven-releases/</url>
+            <url>http://nexus.anji-plus.com:8081/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>nexus-snapshots</id>
-            <url>http://10.108.10.53:8081/repository/maven-snapshots/</url>
+            <url>http://nexus.anji-plus.com:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
