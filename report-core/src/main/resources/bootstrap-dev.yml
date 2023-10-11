@@ -4,6 +4,14 @@ spring:
     url: jdbc:mysql://10.108.26.197:3306/aj_report?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
     password: appuser@anji
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 300000  # 连接超时时间 - 默认值：30秒。
+      validation-timeout: 5000  # 连接被测试活动的最长时间 - 默认值：5秒。
+      idle-timeout: 60000  # 连接池中允许闲置的最长时间 - 默认值：10分钟
+      max-lifetime: 1800000  # 一个连接生命时长（毫秒），超时而没被使用则被释放 - 默认值：30分钟
+      maximum-pool-size: 10  #连接池中允许的最大连接数，包括闲置和使用中的连接 - 默认值：10
+      minimum-idle: 5  # 连接池中允许的最小空闲连接数 - 默认值：10。
   gaea:
     subscribes:
       oss: #文件存储
@@ -14,7 +22,3 @@ spring:
         downloadPath: http://127.0.0.1:9095/file/download
         nfs:
           path: D:\\aaa\\
-
-
-
-

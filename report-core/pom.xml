@@ -202,14 +202,14 @@
 
     <build>
         <plugins>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    &lt;!&ndash;includeSystemScope>true</includeSystemScope&ndash;&gt;
+                    <!--includeSystemScope>true</includeSystemScope-->
                     <classifier>exec</classifier>
                 </configuration>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
