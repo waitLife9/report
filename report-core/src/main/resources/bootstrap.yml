@@ -12,6 +12,9 @@ spring:
   main:
     #allow-bean-definition-overriding: true
     allow-circular-references: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   application:
     name: aj-report
   servlet:
