@@ -1,13 +1,13 @@
 <template>
   <div :style="styleObj">
-    <v-chart ref="myVChart" :options="options" autoresize />
+    <v-chart ref="myVChart" :option="options" autoresize />
   </div>
 </template>
 <script>
 import {targetWidgetLinkageLogic} from "@/views/bigscreenDesigner/designer/linkageLogic";
 
 import "echarts/map/js/china.js";
-import echarts from "echarts";
+import * as echarts from "echarts";
 import { conversionCity } from "@/utils/china";
 /*let geoCoordMap = {
   上海市: [121.4648, 31.2891],
