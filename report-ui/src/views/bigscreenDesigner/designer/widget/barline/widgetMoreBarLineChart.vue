@@ -424,6 +424,15 @@ export default {
         this.options.legend["data"] = arr;
       }
     },
+    //获取堆叠样式
+    getStackStyle() {
+      const optionsSetup = this.optionsSetup;
+      let style = "";
+      if (optionsSetup.stackStyle == "upDown") {
+        style = "total";
+      }
+      return style;
+    },
     // 数据处理
     setOptionsData(e, paramsConfig) {
       const optionsData = this.optionsData; // 数据类型 静态 or 动态
@@ -478,6 +487,7 @@ export default {
         if (series[i].type == "bar") {
           series[i].name = legendName[i];
           series[i].type = "bar";
+          series[i].stack = this.getStackStyle();
           series[i].label = {
             show: optionsSetup.isShowBar,
             position: "top",
@@ -485,6 +495,7 @@ export default {
             fontSize: optionsSetup.fontSizeBar,
             color: optionsSetup.subTextColorBar,
             fontWeight: optionsSetup.fontWeightBar,
+            formatter: !!optionsSetup.percentSignBar ? '{c}%' : '{c}'
           };
           series[i].barWidth = optionsSetup.maxWidth;
           series[i].itemStyle.normal["barBorderRadius"] = optionsSetup.radius;
@@ -522,6 +533,7 @@ export default {
             fontSize: optionsSetup.fontSizeLine,
             color: optionsSetup.subTextColorLine,
             fontWeight: optionsSetup.fontWeightLine,
+            formatter: !!optionsSetup.percentSignLine ? '{c}%' : '{c}'
           };
         }
       }
@@ -565,6 +577,7 @@ export default {
         if (val.series[i].type == "bar") {
           obj.name = val.series[i].name;
           obj.type = val.series[i].type;
+          obj.stack = this.getStackStyle();
           obj.label = {
             show: optionsSetup.isShowBar,
             position: "top",
@@ -572,6 +585,7 @@ export default {
             fontSize: optionsSetup.fontSizeBar,
             color: optionsSetup.subTextColorBar,
             fontWeight: optionsSetup.fontWeightBar,
+            formatter: !!optionsSetup.percentSignBar ? '{c}%' : '{c}'
           };
           obj.barWidth = optionsSetup.maxWidth;
           obj.itemStyle = {
@@ -615,6 +629,7 @@ export default {
             fontSize: optionsSetup.fontSizeLine,
             color: optionsSetup.subTextColorLine,
             fontWeight: optionsSetup.fontWeightLine,
+            formatter: !!optionsSetup.percentSignLine ? '{c}%' : '{c}'
           };
           obj.data = val.series[i].data;
           series.push(obj);

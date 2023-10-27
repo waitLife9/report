@@ -293,9 +293,6 @@ export default {
     },
     // 处理数据
     setOptionsData(e, paramsConfig) {
-      console.log("ces", e);
-      console.log("ces", paramsConfig);
-
       const optionsData = this.optionsData; // 数据类型 静态 or 动态
       optionsData.dynamicData = optionsData.dynamicData || {}; // 兼容 dynamicData undefined
       const myDynamicData = optionsData.dynamicData;
@@ -312,7 +309,6 @@ export default {
           }
         });
       }
-      console.log(myDynamicData);
       optionsData.dataType == "staticData"
         ? this.staticDataFn(optionsData.staticData)
         : this.dynamicDataFn(optionsData.dynamicData, optionsData.refreshTime);
@@ -368,6 +364,7 @@ export default {
             fontSize: optionsSetup.fontSize,
             color: optionsSetup.dataColor,
             fontWeight: optionsSetup.fontWeight,
+            formatter: !!optionsSetup.percentSign ? '{c}%' : '{c}'
           };
           series[i].data = data;
           this.options.legend["data"] = legendName;
@@ -438,6 +435,7 @@ export default {
             fontSize: optionsSetup.fontSize,
             color: optionsSetup.dataColor,
             fontWeight: optionsSetup.fontWeight,
+            formatter: !!optionsSetup.percentSign ? '{c}%' : '{c}'
           };
           obj.data = val.series[i].data;
           series.push(obj);

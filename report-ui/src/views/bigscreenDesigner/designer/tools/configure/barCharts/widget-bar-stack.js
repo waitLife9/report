@@ -413,6 +413,22 @@ export const widgetBarStack = {
             },
             {
               type: 'el-input-text',
+              label: '最大值',
+              name: 'maxY',
+              required: false,
+              placeholder: '',
+              value: '100',
+            },
+            {
+              type: 'el-switch',
+              label: '阴影显示',
+              name: 'isShowBackground',
+              require: false,
+              placeholder: '',
+              value: true,
+            },
+            {
+              type: 'el-input-text',
               label: '坐标名',
               name: 'textNameY',
               require: false,
@@ -537,6 +553,14 @@ export const widgetBarStack = {
               value: false
             },
             {
+              type: 'el-switch',
+              label: '百分比符号显示',
+              name: 'percentSign',
+              required: false,
+              placeholder: '',
+              value: false
+            },
+            {
               type: 'el-input-number',
               label: '字体字号',
               name: 'fontSize',
@@ -550,7 +574,7 @@ export const widgetBarStack = {
               name: 'dataColor',
               required: false,
               placeholder: '',
-              value: '#fff'
+              value: ''
             },
             {
               type: 'el-select',

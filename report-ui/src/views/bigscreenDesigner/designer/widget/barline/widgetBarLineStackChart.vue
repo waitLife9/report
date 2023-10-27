@@ -13,7 +13,6 @@ export default {
   props: {
     value: Object,
     ispreview: Boolean,
-    flagInter: null,
   },
   data() {
     return {
@@ -359,6 +358,15 @@ export default {
         this.options.legend["data"] = arr;
       }
     },
+    //获取堆叠样式
+    getStackStyle() {
+      const optionsSetup = this.optionsSetup;
+      let style = "";
+      if (optionsSetup.stackStyle == "upDown") {
+        style = "total";
+      }
+      return style;
+    },
     // 数据解析
     setOptionsData(e, paramsConfig) {
       const optionsSetup = this.optionsSetup;
@@ -440,6 +448,7 @@ export default {
           type: "bar",
           data: bar,
           barGap: "0%",
+          stack : this.getStackStyle(),
           barWidth: optionsSetup.maxWidth,
           label: {
             show: optionsSetup.isShowBar,
@@ -448,6 +457,7 @@ export default {
             fontSize: optionsSetup.fontSizeBar,
             color: optionsSetup.subTextColorBar,
             fontWeight: optionsSetup.fontWeightBar,
+            formatter: !!optionsSetup.percentSignBar ? '{c}%' : '{c}'
           },
           //颜色，圆角属性
           itemStyle: {
@@ -491,6 +501,7 @@ export default {
             fontSize: optionsSetup.fontSizeLine,
             color: optionsSetup.subTextColorLine,
             fontWeight: optionsSetup.fontWeightLine,
+            formatter: !!optionsSetup.percentSignLine ? '{c}%' : '{c}'
           },
         });
       }
@@ -544,6 +555,7 @@ export default {
           type: "bar",
           data: bar,
           barGap: "0%",
+          stack : this.getStackStyle(),
           barWidth: optionsSetup.maxWidth,
           label: {
             show: optionsSetup.isShowBar,
@@ -552,6 +564,7 @@ export default {
             fontSize: optionsSetup.fontSizeBar,
             color: optionsSetup.subTextColorBar,
             fontWeight: optionsSetup.fontWeightBar,
+            formatter: !!optionsSetup.percentSignBar ? '{c}%' : '{c}'
           },
           //颜色，圆角属性
           itemStyle: {
@@ -594,6 +607,7 @@ export default {
             fontSize: optionsSetup.fontSizeLine,
             color: optionsSetup.subTextColorLine,
             fontWeight: optionsSetup.fontWeightLine,
+            formatter: !!optionsSetup.percentSignLine ? '{c}%' : '{c}'
           },
         });
       }
