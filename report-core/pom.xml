@@ -13,10 +13,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.anji-plus</groupId>
     <artifactId>aj-report</artifactId>
-    <version>1.2.1.RELEASE</version>
-    <!--<groupId>com.anji-plus.otwb</groupId>
-	<artifactId>product-report-starter</artifactId>
-    <version>1.9.1-SNAPSHOT</version>-->
+    <version>1.2.0.RELEASE</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

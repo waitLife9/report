@@ -404,6 +404,14 @@ export const widgetBarStack = {
               value: 14,
             },
             {
+              type: 'el-input-text',
+              label: '数值行数',
+              name: 'textRowsNum',
+              required: false,
+              placeholder: '',
+              value: '',
+            },
+            {
               type: 'el-input-number',
               label: '数值间隔',
               name: 'textInterval',
@@ -486,7 +494,7 @@ export const widgetBarStack = {
               name: 'maxY',
               required: false,
               placeholder: '',
-              value: '100',
+              value: '',
             },
             {
               type: 'el-input-text',
