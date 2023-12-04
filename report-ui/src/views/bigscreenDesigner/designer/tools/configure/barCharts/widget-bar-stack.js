@@ -61,7 +61,7 @@ export const widgetBarStack = {
               name: 'maxWidth',
               required: false,
               placeholder: '',
-              value: 20,
+              value: 15,
             },
             {
               type: 'el-slider',
@@ -76,6 +76,14 @@ export const widgetBarStack = {
               label: '间距',
               name: 'barGap',
               required: false,
+              placeholder: '',
+              value: 10,
+            },
+            {
+              type: 'el-slider',
+              label: '最小高度',
+              name: 'minHeight',
+              require: false,
               placeholder: '',
               value: 0,
             },
@@ -768,21 +776,24 @@ export const widgetBarStack = {
               required: false,
               placeholder: '',
               value: 10,
-            }, {
+            },
+            {
+              type: 'el-slider',
+              label: '右边距(像素)',
+              name: 'marginRight',
+              required: false,
+              placeholder: '',
+              value: 10,
+            },
+            {
               type: 'el-slider',
               label: '顶边距(像素)',
               name: 'marginTop',
               required: false,
               placeholder: '',
               value: 50,
-            }, {
-              type: 'el-slider',
-              label: '右边距(像素)',
-              name: 'marginRight',
-              required: false,
-              placeholder: '',
-              value: 40,
-            }, {
+            },
+            {
               type: 'el-slider',
               label: '底边距(像素)',
               name: 'marginBottom',

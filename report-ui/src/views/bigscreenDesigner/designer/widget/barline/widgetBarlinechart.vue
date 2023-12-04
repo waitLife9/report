@@ -219,6 +219,7 @@ export default {
       const optionsSetup = this.optionsSetup;
       const yAxis = [
         {
+          max: optionsSetup.maxYLeft !== "" ? optionsSetup.maxYLeft : null,
           type: "value",
           // 均分
           splitNumber: optionsSetup.splitNumberLeft,
@@ -261,6 +262,7 @@ export default {
           },
         },
         {
+          max: optionsSetup.maxYRight !== "" ? optionsSetup.maxYRight : null,
           type: "value",
           // 均分
           splitNumber: optionsSetup.splitNumberRight,
@@ -330,7 +332,7 @@ export default {
           series[key].itemStyle.borderRadius = optionsSetup.radius;
           series[key].label = {
             show: optionsSetup.isShowLine,
-            position: "top",
+            position: optionsSetup.fontPositionLine,
             distance: optionsSetup.distanceLine,
             fontSize: optionsSetup.fontSizeLine,
             color: optionsSetup.subTextColorLine,
@@ -349,12 +351,23 @@ export default {
         if (series[key].type == "bar") {
           series[key].label = {
             show: optionsSetup.isShowBar,
-            position: "top",
+            position: optionsSetup.fontPositionBar,
             distance: optionsSetup.distanceBar,
             fontSize: optionsSetup.fontSizeBar,
             color: optionsSetup.subTextColorBar,
             fontWeight: optionsSetup.fontWeightBar,
             formatter: !!optionsSetup.percentSignBar ? '{c}%' : '{c}'
+          };
+          //柱体背景属性
+          series[key].showBackground = optionsSetup.isShowBackground;
+          series[key].backgroundStyle = {
+            color: optionsSetup.backgroundStyleColor,
+            borderColor: optionsSetup.backgroundStyleBorderColor,
+            borderWidth: optionsSetup.backgroundStyleBorderWidth,
+            borderType: optionsSetup.backgroundStyleBorderType,
+            shadowBlur: optionsSetup.backgroundStyleShadowBlur,
+            shadowColor: optionsSetup.backgroundStyleShadowColor,
+            opacity: optionsSetup.backgroundStyleOpacity / 100,
           };
           series[key].barWidth = optionsSetup.maxWidth;
           series[key].barMinHeight = optionsSetup.minHeight;
@@ -367,8 +380,11 @@ export default {
     setOptionsTooltip() {
       const optionsSetup = this.optionsSetup;
       const tooltip = {
-        trigger: "item",
-        show: true,
+        show: optionsSetup.isShowTooltip,
+        trigger: optionsSetup.tooltipTrigger,
+        axisPointer: {
+          type: optionsSetup.tooltipAxisPointerType,
+        },
         textStyle: {
           color: optionsSetup.tipsColor,
           fontSize: optionsSetup.tipsFontSize,

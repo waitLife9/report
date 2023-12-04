@@ -33,11 +33,11 @@ export const widgetBarLineStack = {
           list: [
             {
               type: 'el-slider',
-              label: '宽度',
+              label: '最大宽度',
               name: 'maxWidth',
               required: false,
               placeholder: '',
-              value: 20,
+              value: 15,
             },
             {
               type: 'el-slider',
@@ -46,6 +46,22 @@ export const widgetBarLineStack = {
               require: false,
               placeholder: '',
               value: 5,
+            },
+            {
+              type: 'el-slider',
+              label: '间距',
+              name: 'barGap',
+              required: false,
+              placeholder: '',
+              value: 10,
+            },
+            {
+              type: 'el-slider',
+              label: '最小高度',
+              name: 'minHeight',
+              require: false,
+              placeholder: '',
+              value: 0,
             },
             {
               type: 'el-select',
@@ -58,6 +74,75 @@ export const widgetBarLineStack = {
                 { code: 'upDown', name: '上下堆叠' },
               ],
               value: 'leftRight'
+            },
+            {
+              type: 'el-switch',
+              label: '背景显示',
+              name: 'isShowBackground',
+              require: false,
+              placeholder: '',
+              value: true,
+            },
+            {
+              type: 'vue-color',
+              label: '背景颜色',
+              name: 'backgroundStyleColor',
+              required: false,
+              placeholder: '',
+              value: 'rgba(180, 180, 180, 0.2)',
+            },
+            {
+              type: 'vue-color',
+              label: '描边颜色',
+              name: 'backgroundStyleBorderColor',
+              required: false,
+              placeholder: '',
+              value: '#000',
+            },
+            {
+              type: 'el-input-number',
+              label: '描边宽度',
+              name: 'backgroundStyleBorderWidth',
+              required: false,
+              placeholder: '',
+              value: 0,
+            },
+            {
+              type: 'el-select',
+              label: '描边类型',
+              name: 'backgroundStyleBorderType',
+              required: false,
+              placeholder: '',
+              selectOptions: [
+                { code: 'solid', name: '实线' },
+                { code: 'dashed', name: '虚线' },
+                { code: 'dotted', name: '斑点' },
+              ],
+              value: 'dashed'
+            },
+            {
+              type: 'el-input-number',
+              label: '阴影模糊',
+              name: 'backgroundStyleShadowBlur',
+              required: false,
+              placeholder: '',
+              value: 10,
+            },
+            {
+              type: 'vue-color',
+              label: '阴影颜色',
+              name: 'backgroundStyleShadowColor',
+              required: false,
+              placeholder: '',
+              value: 'rgba(0, 0, 0, 0.5)',
+            },
+            {
+              type: 'el-slider',
+              label: '透明度',
+              name: 'backgroundStyleOpacity',
+              require: false,
+              placeholder: '',
+              value: 100,
             },
           ],
         },
@@ -78,7 +163,7 @@ export const widgetBarLineStack = {
               name: 'pointSize',
               required: false,
               placeholder: '',
-              value: 3,
+              value: 5,
             },
             {
               type: 'el-select',
@@ -106,7 +191,23 @@ export const widgetBarLineStack = {
               name: 'lineWidth',
               required: false,
               placeholder: '',
-              value: 3,
+              value: 5,
+            },
+            {
+              type: 'el-switch',
+              label: '面积堆积',
+              name: 'area',
+              required: false,
+              placeholder: '',
+              value: true,
+            },
+            {
+              type: 'el-slider',
+              label: '面积厚度',
+              name: 'areaThickness',
+              required: false,
+              placeholder: '',
+              value: 15,
             },
           ],
         },
@@ -466,6 +567,14 @@ export const widgetBarLineStack = {
             },
             {
               type: 'el-input-text',
+              label: '最大值',
+              name: 'maxYLeft',
+              required: false,
+              placeholder: '',
+              value: '',
+            },
+            {
+              type: 'el-input-text',
               label: '坐标名',
               name: 'textNameYLeft',
               require: false,
@@ -588,6 +697,14 @@ export const widgetBarLineStack = {
               require: false,
               placeholder: '',
               value: true,
+            },
+            {
+              type: 'el-input-text',
+              label: '最大值',
+              name: 'maxYRight',
+              required: false,
+              placeholder: '',
+              value: '',
             },
             {
               type: 'el-input-text',
@@ -722,12 +839,30 @@ export const widgetBarLineStack = {
               value: false
             },
             {
+              type: 'el-select',
+              label: '位置',
+              name: 'fontPositionBar',
+              required: false,
+              placeholder: '',
+              selectOptions: [
+                { code: 'top', name: '上' },
+                { code: 'left', name: '左' },
+                { code: 'right', name: '右' },
+                { code: 'inside', name: '里' },
+                { code: 'insideTop', name: '里顶' },
+                { code: 'insideLeft', name: '里左' },
+                { code: 'insideRight', name: '里右' },
+                { code: 'insideBottom', name: '里底' },
+              ],
+              value: 'top'
+            },
+            {
               type: 'el-input-number',
               label: '距离',
               name: 'distanceBar',
               required: false,
               placeholder: '',
-              value: 10
+              value: 0
             },
             {
               type: 'el-input-number',
@@ -781,12 +916,30 @@ export const widgetBarLineStack = {
               value: false
             },
             {
+              type: 'el-select',
+              label: '位置',
+              name: 'fontPositionLine',
+              required: false,
+              placeholder: '',
+              selectOptions: [
+                { code: 'top', name: '上' },
+                { code: 'left', name: '左' },
+                { code: 'right', name: '右' },
+                { code: 'inside', name: '里' },
+                { code: 'insideTop', name: '里顶' },
+                { code: 'insideLeft', name: '里左' },
+                { code: 'insideRight', name: '里右' },
+                { code: 'insideBottom', name: '里底' },
+              ],
+              value: 'top'
+            },
+            {
               type: 'el-input-number',
               label: '距离',
               name: 'distanceLine',
               required: false,
               placeholder: '',
-              value: 10
+              value: 0
             },
             {
               type: 'el-input-number',
@@ -885,21 +1038,24 @@ export const widgetBarLineStack = {
               required: false,
               placeholder: '',
               value: 10,
-            }, {
+            },
+            {
+              type: 'el-slider',
+              label: '右边距(像素)',
+              name: 'marginRight',
+              required: false,
+              placeholder: '',
+              value: 10,
+            },
+            {
               type: 'el-slider',
               label: '顶边距(像素)',
               name: 'marginTop',
               required: false,
               placeholder: '',
               value: 50,
-            }, {
-              type: 'el-slider',
-              label: '右边距(像素)',
-              name: 'marginRight',
-              required: false,
-              placeholder: '',
-              value: 40,
-            }, {
+            },
+            {
               type: 'el-slider',
               label: '底边距(像素)',
               name: 'marginBottom',

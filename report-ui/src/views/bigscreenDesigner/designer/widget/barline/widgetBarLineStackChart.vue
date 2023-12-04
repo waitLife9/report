@@ -1,6 +1,6 @@
 <template>
   <div :style="styleObj">
-    <v-chart ref="myVChart" :options="options" autoresize />
+    <v-chart ref="myVChart" :options="options" autoresize/>
   </div>
 </template>
 
@@ -212,6 +212,7 @@ export default {
       const optionsSetup = this.optionsSetup;
       const yAxis = [
         {
+          max: optionsSetup.maxYLeft !== "" ? optionsSetup.maxYLeft : null,
           type: "value",
           // 均分
           splitNumber: optionsSetup.splitNumberLeft,
@@ -254,6 +255,7 @@ export default {
           },
         },
         {
+          max: optionsSetup.maxYRight !== "" ? optionsSetup.maxYRight : null,
           type: "value",
           // 均分
           splitNumber: optionsSetup.splitNumberRight,
@@ -304,7 +306,7 @@ export default {
       const tooltip = {
         show: optionsSetup.isShowTooltip,
         trigger: optionsSetup.tooltipTrigger,
-        axisPointer:{
+        axisPointer: {
           type: optionsSetup.tooltipAxisPointerType,
         },
         textStyle: {
@@ -394,10 +396,10 @@ export default {
       optionsData.dataType == "staticData"
         ? this.staticDataFn(optionsData.staticData, optionsSetup)
         : this.dynamicDataFn(
-            optionsData.dynamicData,
-            optionsData.refreshTime,
-            optionsSetup
-          );
+          optionsData.dynamicData,
+          optionsData.refreshTime,
+          optionsSetup
+        );
     },
     //去重
     setUnique(arr) {
@@ -449,12 +451,13 @@ export default {
           name: yAxisList[i],
           type: "bar",
           data: bar,
-          barGap: "0%",
-          stack : this.getStackStyle(),
+          barGap: optionsSetup.barGap + "%",
+          barMinHeight : optionsSetup.minHeight,
+          stack: this.getStackStyle(),
           barWidth: optionsSetup.maxWidth,
           label: {
             show: optionsSetup.isShowBar,
-            position: "top",
+            position: optionsSetup.fontPositionBar,
             distance: optionsSetup.distanceBar,
             fontSize: optionsSetup.fontSizeBar,
             color: optionsSetup.subTextColorBar,
@@ -468,6 +471,17 @@ export default {
               barBorderRadius: optionsSetup.radius,
             },
           },
+          //柱体背景属性
+          showBackground: optionsSetup.isShowBackground,
+          backgroundStyle: {
+            color: optionsSetup.backgroundStyleColor,
+            borderColor: optionsSetup.backgroundStyleBorderColor,
+            borderWidth: optionsSetup.backgroundStyleBorderWidth,
+            borderType: optionsSetup.backgroundStyleBorderType,
+            shadowBlur: optionsSetup.backgroundStyleShadowBlur,
+            shadowColor: optionsSetup.backgroundStyleShadowColor,
+            opacity: optionsSetup.backgroundStyleOpacity / 100,
+          }
         });
       }
       for (let i = 0; i < yAxisList.length; i++) {
@@ -496,9 +510,12 @@ export default {
             color: arrColor[i],
             width: optionsSetup.lineWidth,
           },
+          areaStyle: {
+            opacity: optionsSetup.area ? optionsSetup.areaThickness / 100 : 0,
+          },
           label: {
             show: optionsSetup.isShowLine,
-            position: "top",
+            position: optionsSetup.fontPositionLine,
             distance: optionsSetup.distanceLine,
             fontSize: optionsSetup.fontSizeLine,
             color: optionsSetup.subTextColorLine,
@@ -582,12 +599,13 @@ export default {
           name: legendName[i],
           type: "bar",
           data: bar,
-          barGap: "0%",
-          stack : this.getStackStyle(),
+          barGap: optionsSetup.barGap + "%",
+          barMinHeight : optionsSetup.minHeight,
+          stack: this.getStackStyle(),
           barWidth: optionsSetup.maxWidth,
           label: {
             show: optionsSetup.isShowBar,
-            position: "top",
+            position: optionsSetup.fontPositionBar,
             distance: optionsSetup.distanceBar,
             fontSize: optionsSetup.fontSizeBar,
             color: optionsSetup.subTextColorBar,
@@ -601,6 +619,17 @@ export default {
               barBorderRadius: optionsSetup.radius,
             },
           },
+          //柱体背景属性
+          showBackground: optionsSetup.isShowBackground,
+          backgroundStyle: {
+            color: optionsSetup.backgroundStyleColor,
+            borderColor: optionsSetup.backgroundStyleBorderColor,
+            borderWidth: optionsSetup.backgroundStyleBorderWidth,
+            borderType: optionsSetup.backgroundStyleBorderType,
+            shadowBlur: optionsSetup.backgroundStyleShadowBlur,
+            shadowColor: optionsSetup.backgroundStyleShadowColor,
+            opacity: optionsSetup.backgroundStyleOpacity / 100,
+          }
         });
       }
       for (let i = 0; i < legendName.length; i++) {
@@ -628,9 +657,12 @@ export default {
             color: arrColor[i],
             width: optionsSetup.lineWidth,
           },
+          areaStyle: {
+            opacity: optionsSetup.area ? optionsSetup.areaThickness / 100 : 0,
+          },
           label: {
             show: optionsSetup.isShowLine,
-            position: "top",
+            position: optionsSetup.fontPositionLine,
             distance: optionsSetup.distanceLine,
             fontSize: optionsSetup.fontSizeLine,
             color: optionsSetup.subTextColorLine,

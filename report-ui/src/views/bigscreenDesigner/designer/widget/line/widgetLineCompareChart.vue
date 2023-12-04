@@ -384,6 +384,7 @@ export default {
     setOptionsYTop() {
       const optionsSetup = this.optionsSetup;
       const yAxis = {
+        max: optionsSetup.maxYTop !== "" ? optionsSetup.maxYTop : null,
         gridIndex: 0,
         splitNumber: optionsSetup.splitNumberYTop,
         show: optionsSetup.isShowYTop,
@@ -428,6 +429,7 @@ export default {
     setOptionsYBottom() {
       const optionsSetup = this.optionsSetup;
       const yAxis = {
+        max: optionsSetup.maxYBottom !== "" ? optionsSetup.maxYBottom : null,
         gridIndex: 1,
         splitNumber: optionsSetup.splitNumberYBottom,
         show: optionsSetup.isShowYBottom,
@@ -493,19 +495,21 @@ export default {
       if (series[0].type == "line") {
         series[0].label = {
           position: "top",
-          distance: 10,
+          distance: optionsSetup.fontDistance,
           show: optionsSetup.isShow,
           color: optionsSetup.dataColor,
           fontSize: optionsSetup.fontSize,
           fontWeight: optionsSetup.fontWeight,
+          formatter: !!optionsSetup.percentSign ? '{c}%' : '{c}'
         };
         series[1].label = {
           position: "bottom",
-          distance: 10,
+          distance: optionsSetup.fontDistance,
           show: optionsSetup.isShow,
           color: optionsSetup.dataColor,
           fontSize: optionsSetup.fontSize,
           fontWeight: optionsSetup.fontWeight,
+          formatter: !!optionsSetup.percentSign ? '{c}%' : '{c}'
         };
       }
     },
