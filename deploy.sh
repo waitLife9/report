@@ -27,7 +27,7 @@ mv $BuildDir/report-ui/dist/* $BuildDir/report-core/src/main/resources/static/
 echo "build springboot"
 cd $BuildDir/report-core
 
-mvn clean deploy -DskipTests
+mvn clean deploy -DskipTests -P 'nexus,!sonatype-oss-release'
 
 if [ $? -eq 0 ] ;then
   rm -rf $BuildDir/report-core/src/main/resources/static
